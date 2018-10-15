@@ -61,6 +61,17 @@ function addParagraph(doc,x,y,p) {
     return y;
 }
 
+function openDataUriWindow(url) {
+    var url_with_name = url.replace("data:application/pdf;", "data:application/pdf;name=myname.pdf;");
+    var html = '<html>' +
+        '<style>html, body { padding: 0; margin: 0; } iframe { width: 100%; height: 100%; border: 0;}  </style>' +
+        '<body>'+
+        '<iframe type="application/pdf" src="' + url_with_name + '"></iframe>' +
+        '</body></html>';
+    var a = window.open('about:whatever');
+    a.document.write(html);
+    a.document.close();
+}
 
 var overall_metric_for_order_option = {
     graphic: {
@@ -1094,13 +1105,12 @@ class gkjxzdf_nh extends React.Component{
                                     doc.setFont('simhei','normal');
                                     let p = year+'年'+this.gks[gk_index]+'综合绩效水平为'+overall_metric_for_radar.overall_metric+'分，较上一年'+(increase>=0?"提升":"下降")+'了'+Math.abs(increase)+'分。'+'从近三年发展情况来看，'+this.gks[gk_index]+'的综合绩效水平呈现'+trend+'态势，见下图。';
                                     let y = addParagraph(doc, 20, 40, p);
-                                    doc.addImage(instance_for_trend.getDataURL({type:'jpeg',pixelRatio: 5,backgroundColor: '#f0f0f0'}),'JPEG',40,y=y+10,120,80);
+                                    doc.addImage(instance_for_trend.getDataURL({type:'jpeg',pixelRatio: 3,backgroundColor: '#f0f0f0'}),'JPEG',40,y=y+10,120,80);
                                     doc.text('图1.'+year+'年'+this.gks[gk_index]+'综合绩效历史走势图',doc.internal.pageSize.getWidth() / 2,y=y+90,'center');
                                     p = '从'+this.gks[gk_index]+'的港口绩效雷达图来看，'+year+'年'+this.gks[gk_index]+overall_metric_for_radar.least_column+'，'+overall_metric_for_radar.greatest_column+'，见下图。';
                                     y = addParagraph(doc, 20, y=y+10, p);
-                                    doc.addImage(instance_for_radar.getDataURL({type:'jpeg',pixelRatio: 5,backgroundColor: '#f0f0f0'}),'JPEG',40,y=y+10,120,80);
+                                    doc.addImage(instance_for_radar.getDataURL({type:'jpeg',pixelRatio: 3,backgroundColor: '#f0f0f0'}),'JPEG',40,y=y+10,120,80);
                                     doc.text('图2.'+year+'年'+this.gks[gk_index]+'综合绩效雷达图',doc.internal.pageSize.getWidth() / 2,y=y+90,'center');
-                                    //let rank = userService.get_overall_metric_rank(year,this.gks[gk_index]).rank, rank_last_year = userService.get_overall_metric_rank(year-1,this.gks[gk_index]).rank;
                                     let rank=this.state.rank, rank_last_year = this.state.rank_last_year;
                                     let rank_change;
                                     if(!rank_last_year || rank === rank_last_year) rank_change = '与去年持平';
@@ -1110,9 +1120,10 @@ class gkjxzdf_nh extends React.Component{
                                     y = 20;
                                     p = '从港口绩效排名看，'+year+'年'+this.gks[gk_index]+'位列全国沿海第'+rank+'位，排名'+rank_change+'，见下图。';
                                     y = addParagraph(doc, 20, y, p);
-                                    doc.addImage(instance_for_order.getDataURL({type:'jpeg',pixelRatio: 5,backgroundColor: '#f0f0f0'}),'JPEG',40,y=y+10,120,80);
-                                    doc.text('图3.'+year+'年'+this.gks[gk_index]+'综合绩效排名图',doc.internal.pageSize.getWidth() / 2,y=y+90,'center');
-                                    doc.save('绩效评估报告.pdf');
+                                    doc.addImage(instance_for_order.getDataURL({type:'jpeg',pixelRatio: 3,backgroundColor: '#f0f0f0'}),'JPEG',15,y=y+10,180,120);
+                                    doc.text('图3.'+year+'年'+this.gks[gk_index]+'综合绩效排名图',doc.internal.pageSize.getWidth() / 2,y=y+130,'center');
+                                    openDataUriWindow(doc.output('datauristring'));
+                                    //doc.save('绩效评估报告.pdf');
                                 }
                                 }>导出报告</button>
                             </div>

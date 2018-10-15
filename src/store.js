@@ -994,8 +994,45 @@ module.exports = {
                 return {responseJson};
             })
     },
+    get_overall_metric_nh_for_trend({gk}) {
+
+        return knex.select('year', 'metric').from('overall_metric_nh').where({gk: gk}).orderBy('year')
+            .then((row) => {
+                let responseJson = {
+                    overall_metric_for_trend: null,
+                    success: false
+                };
+                if (!row) {
+
+                    return {responseJson}
+                }
+                responseJson = {
+                    overall_metric_for_trend: row,
+                    success: true
+                };
+                return {responseJson};
+            })
+    },
     get_overall_metric_rank({year,gk}) {
         return knex.select('rank').from('overall_metric_for_order').where({year: year,gk:gk})
+            .then((row) => {
+                let responseJson = {
+                    rank: null,
+                    success: false
+                };
+                if (!row) {
+
+                    return {responseJson}
+                }
+                responseJson = {
+                    rank: row,
+                    success: true
+                };
+                return {responseJson};
+            })
+    },
+    get_overall_metric_rank_nh({year,gk}) {
+        return knex.select('rank').from('overall_metric_for_order_nh').where({year: year,gk:gk})
             .then((row) => {
                 let responseJson = {
                     rank: null,
@@ -1015,6 +1052,26 @@ module.exports = {
     get_overall_metric_for_order({year}) {
 
         return knex.select('gk', 'metric').from('overall_metric').where({year: year}).orderBy('metric')
+            .then((row) => {
+
+                let responseJson = {
+                    overall_metric_for_order: null,
+                    success: false
+                };
+                if (!row) {
+
+                    return {responseJson}
+                }
+                responseJson = {
+                    overall_metric_for_order: row,
+                    success: true
+                };
+                return {responseJson};
+            })
+    },
+    get_overall_metric_nh_for_order({year}) {
+
+        return knex.select('gk', 'metric').from('overall_metric_nh').where({year: year}).orderBy('metric')
             .then((row) => {
 
                 let responseJson = {
@@ -1052,9 +1109,51 @@ module.exports = {
                 return {responseJson};
             })
     },
+
+    get_gkjxzdf_nh_gk() {
+
+        return knex.select('gk').from('overall_metric_nh').groupBy('gk')
+            .then((row) => {
+
+                let responseJson = {
+                    gkjxzdf_gk: null,
+                    success: false
+                };
+                if (!row) {
+
+                    return {responseJson}
+                }
+                responseJson = {
+                    gkjxzdf_gk: row,
+                    success: true
+                };
+                return {responseJson};
+            })
+    },
+
     get_gkjxzdf_year() {
 
         return knex.select('year').from('overall_metric').groupBy('year')
+            .then((row) => {
+
+                let responseJson = {
+                    gkjxzdf_year: null,
+                    success: false
+                };
+                if (!row) {
+
+                    return {responseJson}
+                }
+                responseJson = {
+                    gkjxzdf_year: row,
+                    success: true
+                };
+                return {responseJson};
+            })
+    },
+    get_gkjxzdf_nh_year() {
+
+        return knex.select('year').from('overall_metric_nh').groupBy('year')
             .then((row) => {
 
                 let responseJson = {
@@ -1117,6 +1216,53 @@ module.exports = {
                 return {responseJson};
             }).catch(e => console.log(e))
     },
+
+    get_gkjxzdf_nh({year, gk}) {
+
+        var sqlStr = "SELECT * \
+  FROM (SELECT year, gk,gkhwttl, gkjzxttl, mtkbnl ,gkaxlyxl,mtnlsyx, gkjjgx, lsgkdj, gkaqscsp,least_column,greatest_column, \
+    metric AS `overall_metric`\
+            FROM harbour.overall_metric_nh \
+            WHERE year=? and gk=?) AS tbA \
+  LEFT JOIN (SELECT year, \
+  max(gkhwttl) as  gkhwttl_max, max(gkjzxttl) as gkjzxttl_max,\
+  max(mtkbnl) as mtkbnl_max , max(gkaxlyxl) as gkaxlyxl_max, max(mtnlsyx) as mtnlsyx_max,\
+  max(gkjjgx) as gkjjgx_max, max(lsgkdj) as lsgkdj_max,\
+  max(gkaqscsp) as gkaqscsp_max ,\
+  avg(gkhwttl) as  gkhwttl_avg, avg(gkjzxttl) as gkjzxttl_avg,\
+  avg(mtkbnl) as mtkbnl_avg , avg(gkaxlyxl) as gkaxlyxl_avg, avg(mtnlsyx) as mtnlsyx_avg,\
+  avg(gkjjgx) as gkjjgx_avg, avg(lsgkdj) as lsgkdj_avg,\
+  avg(gkaqscsp) as gkaqscsp_avg ,\
+  min(gkhwttl) as  gkhwttl_min, min(gkjzxttl) as gkjzxttl_min,\
+  min(mtkbnl) as mtkbnl_min , min(gkaxlyxl) as gkaxlyxl_min, min(mtnlsyx) as mtnlsyx_min,\
+  min(gkjjgx) as gkjjgx_min, min(lsgkdj) as lsgkdj_min,\
+  min(gkaqscsp) as gkaqscsp_min \
+            FROM harbour.overall_metric_nh \
+            GROUP BY year) as tbC \
+  ON tbA.year = tbC.year";
+
+        return knex.raw(sqlStr, [year, gk])
+            .then((row) => {
+
+
+                let responseJson = {
+                    gkjxzdf: null,
+                    success: false
+                };
+                if (!row) {
+
+                    return {responseJson}
+                }
+                responseJson = {
+                    gkjxzdf: row[0][0],
+                    success: true
+                };
+
+
+                return {responseJson};
+            }).catch(e => console.log(e))
+    },
+
     get_yhgkjxpjldt({gk}) {
 
         return knex('gk').where({gk})

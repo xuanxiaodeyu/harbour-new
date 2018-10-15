@@ -6,8 +6,11 @@ export const userService = {
     register,
     get_stat,
     get_gkjxzdf,
+    get_gkjxzdf_nh,
     get_gkjxzdf_year,
+    get_gkjxzdf_nh_year,
     get_gkjxzdf_gk,
+    get_gkjxzdf_nh_gk,
     get_qwdttlswrs,
     get_qwdttlswrs_nh,
     get_qwdttlswrs_year,
@@ -25,8 +28,11 @@ export const userService = {
     get_ddsr_jxsp,
     get_ddsr_nh_jxsp,
     get_overall_metric_rank,
+    get_overall_metric_rank_nh,
     get_overall_metric_for_order,
+    get_overall_metric_nh_for_order,
     get_overall_metric_for_trend,
+    get_overall_metric_nh_for_trend,
     get_lsgkdj,
     get_lsgkdj_nh,
     get_lsgkdj_year,
@@ -325,6 +331,30 @@ function get_gkjxzdf_gk() {
             }
         });
 }
+function get_gkjxzdf_nh_gk() {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+    };
+    return fetch('/gkjxzdf_nh_gk', requestOptions)
+        .then(response => {
+
+            if (!response.ok) {
+                return Promise.reject(response.statusText);
+            }
+
+            return response.json();
+        })
+        .then(Result => {
+
+            if (Result.success) {
+                return Result.gkjxzdf_gk;
+            }
+            else {
+                //FIXME: deal with fail situation
+            }
+        });
+}
 
 function get_gkjxzdf_year() {
     const requestOptions = {
@@ -352,6 +382,31 @@ function get_gkjxzdf_year() {
         });
 }
 
+function get_gkjxzdf_nh_year() {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+    };
+    return fetch('/gkjxzdf_nh_year', requestOptions)
+        .then(response => {
+
+            console.log(response)
+            if (!response.ok) {
+                return Promise.reject(response.statusText);
+            }
+
+            return response.json();
+        })
+        .then(Result => {
+            console.log(Result);
+            if (Result.success) {
+                return Result.gkjxzdf_year;
+            }
+            else {
+                //FIXME: deal with fail situation
+            }
+        });
+}
 
 
 function get_gkjxzdf(year,gk) {
@@ -382,6 +437,36 @@ function get_gkjxzdf(year,gk) {
                     //FIXME: deal with fail situation
                 }
             });
+}
+
+function get_gkjxzdf_nh(year,gk) {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ year,gk })
+    };
+    return fetch('/gkjxzdf_nh', requestOptions)
+        .then(response => {
+
+            if (!response.ok) {
+                return Promise.reject(response.statusText);
+            }
+
+            return response.json();
+        })
+        .then(Result => {
+
+
+            if (Result.success) {
+                let metric = Result.gkjxzdf.overall_metric;
+                Result.gkjxzdf.overall_metric = metric.toFixed(2);
+                return Result.gkjxzdf;
+            }
+            else
+            {
+                //FIXME: deal with fail situation
+            }
+        });
 }
 
 
@@ -507,7 +592,7 @@ function get_overall_metric_rank(year,gk) {
         })
         .then(loginResult => {
             if (loginResult.success) {
-                return loginResult.rank[0].rank;
+                return loginResult.rank[0];
             }
             else
             {
@@ -516,6 +601,32 @@ function get_overall_metric_rank(year,gk) {
         });
 }
 
+
+function get_overall_metric_rank_nh(year,gk) {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ year,gk })
+    };
+    return fetch('/overall_metric_rank_nh', requestOptions)
+        .then(response => {
+
+            if (!response.ok) {
+                return Promise.reject(response.statusText);
+            }
+
+            return response.json();
+        })
+        .then(loginResult => {
+            if (loginResult.success) {
+                return loginResult.rank[0];
+            }
+            else
+            {
+                //FIXME: deal with fail situation
+            }
+        });
+}
 
 function get_overall_metric_for_order(year) {
     const requestOptions = {
@@ -544,6 +655,34 @@ function get_overall_metric_for_order(year) {
         });
 }
 
+
+function get_overall_metric_nh_for_order(year) {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ year })
+    };
+    return fetch('/overall_metric_nh_for_order', requestOptions)
+        .then(response => {
+
+            if (!response.ok) {
+                return Promise.reject(response.statusText);
+            }
+
+            return response.json();
+        })
+        .then(loginResult => {
+
+            if (loginResult.success) {
+                return loginResult.overall_metric_for_order;
+            }
+            else
+            {
+                //FIXME: deal with fail situation
+            }
+        });
+}
+
 function get_overall_metric_for_trend(gk) {
     const requestOptions = {
         method: 'POST',
@@ -554,6 +693,32 @@ function get_overall_metric_for_trend(gk) {
         .then(response => {
 
             if (!response.ok) { 
+                return Promise.reject(response.statusText);
+            }
+
+            return response.json();
+        })
+        .then(loginResult => {
+
+            if (loginResult.success) {
+                return loginResult.overall_metric_for_trend;
+            }
+            else
+            {
+                //FIXME: deal with fail situation
+            }
+        });
+}
+function get_overall_metric_nh_for_trend(gk) {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ gk })
+    };
+    return fetch('/overall_metric_nh_for_trend', requestOptions)
+        .then(response => {
+
+            if (!response.ok) {
                 return Promise.reject(response.statusText);
             }
 

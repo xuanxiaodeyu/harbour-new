@@ -41,6 +41,7 @@ import lsgkdj_nh from "views/lsgkdj_nh/lsgkdj_nh.jsx";
 import qwdttlswrs from "views/qwdttlswrs/qwdttlswrs.jsx";
 import qwdttlswrs_nh from "views/qwdttlswrs_nh/qwdttlswrs_nh.jsx";
 import gkjxzdf from "views/gkjxzdf/gkjxzdf.jsx";
+import gkjxzdf_nh from "views/gkjxzdf_nh/gkjxzdf_nh.jsx";
 import DataManage from "views/DataManage/DataManage.jsx";
 
 
@@ -141,12 +142,12 @@ var dashRoutesNormal = [
       state: "openTables",
       icon: Timeline,
       views: [
-          /*{
+          {
               path: "/nh/gkjxzdf",
               name: "绩效总体评价",
               mini: "",
               component: gkjxzdf_nh
-          },*/
+          },
           {
               path: "/nh/gkhwttl",
               name: "港口货物吞吐量",
@@ -304,12 +305,12 @@ var dashRoutesGuest = [
         state: "openTables",
         icon: Timeline,
         views: [
-            /*{
+            {
                 path: "/nh/gkjxzdf",
                 name: "绩效总体评价",
                 mini: "",
                 component: gkjxzdf_nh
-            },*/
+            },
             {
                 path: "/nh/gkhwttl",
                 name: "港口货物吞吐量",

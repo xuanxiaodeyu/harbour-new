@@ -337,11 +337,11 @@ var gkjxzdf_option = {
             indicator : [
                 { text: '港口货物吞吐量', color:'#9932CC',max: 10},
                 { text: '港口集装箱吞吐量', color:'#9932CC',max: 10},
-                { text: '港口连通性', color:'#9932CC',max: 10},
+                //{ text: '港口连通性', color:'#9932CC',max: 10},
                 { text: '码头靠泊能力', color:'#9932CC',max: 10},
                 { text: '港口岸线利用率', color:'#9932CC',max: 10},
                 { text: '港口通过能力适应度', color:'#9932CC',max: 10},
-                { text: '港口作业效率', color:'#9932CC',max: 10},
+                //{ text: '港口作业效率', color:'#9932CC',max: 10},
                 { text: '港口经济贡献', color:'#9932CC',max: 10},
                 { text: '绿色港口等级', color:'#9932CC',max: 10},
                 { text: '港口安全生产水平', color:'#9932CC',max: 10},
@@ -354,19 +354,19 @@ var gkjxzdf_option = {
                 type: 'radar',
                 data : [
                     {
-                        value : [0, 0,0,0,0,0,0,0,0,0],
-                        name : '深圳'
+                        value : [0, 0,0,0,0,0,0,0],
+                        name : '泸州'
                     },
                     {
-                        value : [0, 0,0,0,0,0,0,0,0,0],
+                        value : [0, 0,0,0,0,0,0,0],
                         name : '行业领先水平'
                     },
                     {
-                        value : [0, 0,0,0,0,0,0,0,0,0],
+                        value : [0, 0,0,0,0,0,0,0],
                         name : '行业平均水平'
                     },
                     {
-                        value : [0, 0,0,0,0,0,0,0,0,0],
+                        value : [0, 0,0,0,0,0,0,0],
                         name : '行业最低水平'
                     }
                 ]
@@ -379,7 +379,7 @@ class gkjxzdf_nh extends React.Component{
     state = {
         value: 0,
         open: false,
-        yhgkhwttl: false,
+        gkhwttl: false,
         anchorEl: null,
         anchorEl_gk: null,
         year: '2016',
@@ -387,16 +387,16 @@ class gkjxzdf_nh extends React.Component{
         overall_metric_for_radar: {
             gk: '',
             year: 2016,
-            yhgkhwttl: 0,
-            yhgkjzxttl: 0,
-            dckbsl: 0,
-            gkmtkbnl: 0,
-            bmaxttl: 0,
+            gkhwttl: 0,
+            gkjzxttl: 0,
+            //dckbsl: 0,
+            mtkbnl: 0,
+            gkaxlyxl: 0,
             mtnlsyx: 0,
-            cbzgpjts: 0,
-            ddsr: 0,
+            //cbzgpjts: 0,
+            gkjjgx: 0,
             lsgkdj: 0,
-            qwdttlswrs: 0,
+            gkaqscsp: 0,
             least_column: '',
             greatest_column: '',
             overall_metric: 0
@@ -438,7 +438,7 @@ class gkjxzdf_nh extends React.Component{
 
 
     get_gkjxzdf_year = () => {
-        userService.get_gkjxzdf_year()
+        userService.get_gkjxzdf_nh_year()
             .then(
                 gkjxzdf_year => { 
                     this.years = gkjxzdf_year.map((item,index) => { return  item.year; });
@@ -453,7 +453,7 @@ class gkjxzdf_nh extends React.Component{
     };
 
     get_gkjxzdf_gk = () => {
-        userService.get_gkjxzdf_gk()
+        userService.get_gkjxzdf_nh_gk()
             .then(
                 gkjxzdf_gk => { 
                     this.gks = gkjxzdf_gk.map((item,index) => { return  item.gk; });
@@ -471,7 +471,7 @@ class gkjxzdf_nh extends React.Component{
     };
 
     update_gkjxzdf = (year,gk_index) => {
-        userService.get_gkjxzdf(year,this.gks[gk_index])
+        userService.get_gkjxzdf_nh(year,this.gks[gk_index])
             .then(
                 gkjxzdf => { 
                     
@@ -542,10 +542,10 @@ class gkjxzdf_nh extends React.Component{
                                 { text: '港口货物吞吐量', color:'#9932CC',max: 10},
                                 { text: '港口集装箱吞吐量', color:'#9932CC',max: 10},
                                 { text: '码头靠\n泊能力', color:'#9932CC',max: 10},
-                                { text: '港口连通性', color:'#9932CC',max: 10},
+                                //{ text: '港口连通性', color:'#9932CC',max: 10},
                                 { text: '港口岸线\n利用率', color:'#9932CC',max: 10},
-                                { text: '港口作业\n效率', color:'#9932CC',max: 10},
-                                { text: '船舶在港\n平均停时', color:'#9932CC',max: 10},
+                                { text: '港口通过能力\n适应度', color:'#9932CC',max: 10},
+                                //{ text: '港口作业\n效率', color:'#9932CC',max: 10},
                                 { text: '港口经\n济贡献', color:'#9932CC',max: 10},
                                 { text: '绿色港口\n等级', color:'#9932CC',max: 10},
                                 { text: '港口安全生产水平', color:'#9932CC',max: 10},
@@ -559,22 +559,22 @@ class gkjxzdf_nh extends React.Component{
                                 lineStyle: {width: 3},
                                 data : [
                                     {
-                                        value : [gkjxzdf.yhgkhwttl, gkjxzdf.yhgkjzxttl , gkjxzdf.gkmtkbnl, gkjxzdf.dckbsl, gkjxzdf.bmaxttl, gkjxzdf.mtnlsyx, gkjxzdf.cbzgpjts, gkjxzdf.ddsr, gkjxzdf.lsgkdj, gkjxzdf.qwdttlswrs],
+                                        value : [gkjxzdf.gkhwttl, gkjxzdf.gkjzxttl , gkjxzdf.mtkbnl, gkjxzdf.gkaxlyxl, gkjxzdf.mtnlsyx, gkjxzdf.gkjjgx, gkjxzdf.lsgkdj, gkjxzdf.gkaqscsp],
                                         name : this.gks[gk_index],
                                         itemStyle:{color:'red'}
                                     },
                                     {
-                                        value : [gkjxzdf.yhgkhwttl_max, gkjxzdf.yhgkjzxttl_max ,  gkjxzdf.gkmtkbnl_max, gkjxzdf.dckbsl_max, gkjxzdf.bmaxttl_max, gkjxzdf.mtnlsyx_max, gkjxzdf.cbzgpjts_max, gkjxzdf.ddsr_max, gkjxzdf.lsgkdj_max, gkjxzdf.qwdttlswrs_max],
+                                        value : [gkjxzdf.gkhwttl_max, gkjxzdf.gkjzxttl_max ,  gkjxzdf.mtkbnl_max, gkjxzdf.gkaxlyxl_max, gkjxzdf.mtnlsyx_max, gkjxzdf.gkjjgx_max, gkjxzdf.lsgkdj_max, gkjxzdf.gkaqscsp_max],
                                         name : '行业领先水平',
                                         itemStyle:{color:'blue'}
                                     },
                                     {
-                                        value : [gkjxzdf.yhgkhwttl_avg, gkjxzdf.yhgkjzxttl_avg , gkjxzdf.gkmtkbnl_avg,gkjxzdf.dckbsl_avg,  gkjxzdf.bmaxttl_avg, gkjxzdf.mtnlsyx_avg, gkjxzdf.cbzgpjts_avg, gkjxzdf.ddsr_avg, gkjxzdf.lsgkdj_avg, gkjxzdf.qwdttlswrs_avg],
+                                        value : [gkjxzdf.gkhwttl_avg, gkjxzdf.gkjzxttl_avg , gkjxzdf.mtkbnl_avg, gkjxzdf.gkaxlyxl_avg, gkjxzdf.mtnlsyx_avg, gkjxzdf.gkjjgx_avg, gkjxzdf.lsgkdj_avg, gkjxzdf.gkaqscsp_avg],
                                         name : '行业平均水平',
                                         itemStyle:{color:'green'}
                                     },
                                     {
-                                        value : [gkjxzdf.yhgkhwttl_min, gkjxzdf.yhgkjzxttl_min , gkjxzdf.gkmtkbnl_min,gkjxzdf.dckbsl_min,  gkjxzdf.bmaxttl_min, gkjxzdf.mtnlsyx_min, gkjxzdf.cbzgpjts_min, gkjxzdf.ddsr_min, gkjxzdf.lsgkdj_min, gkjxzdf.qwdttlswrs_min],
+                                        value : [gkjxzdf.gkhwttl_min, gkjxzdf.gkjzxttl_min , gkjxzdf.mtkbnl_min,  gkjxzdf.gkaxlyxl_min, gkjxzdf.mtnlsyx_min, gkjxzdf.gkjjgx_min, gkjxzdf.lsgkdj_min, gkjxzdf.gkaqscsp_min],
                                         name : '行业最低水平',
                                         itemStyle:{color:'yellow'}
                                     }
@@ -609,7 +609,7 @@ class gkjxzdf_nh extends React.Component{
         // if(year == this.state.year)
         //     return;
         
-        userService.get_overall_metric_for_order(year)
+        userService.get_overall_metric_nh_for_order(year)
             .then(
                 overall_metric_for_order => { 
                     let gkArray = overall_metric_for_order.map((item,index) => { return  item.gk; });
@@ -726,7 +726,7 @@ class gkjxzdf_nh extends React.Component{
     update_overall_metric_for_trend = (gk_index) => {
         // if(year == this.state.year)
         //     return;
-        userService.get_overall_metric_for_trend(this.gks[gk_index])
+        userService.get_overall_metric_nh_for_trend(this.gks[gk_index])
             .then(
                 overall_metric_for_trend => { 
                     let yearArray = overall_metric_for_trend.map((item,index) => { return  item.year+'年'; });
@@ -907,22 +907,34 @@ class gkjxzdf_nh extends React.Component{
 
     };
     update_overall_metric_rank = (year,gk_index) => {
-        userService.get_overall_metric_rank(year,this.gks[gk_index])
+        userService.get_overall_metric_rank_nh(year,this.gks[gk_index])
             .then(
                 rank => {
-                    this.setState(prev => ({
+                    if(rank)
+                        this.setState(prev => ({
                             stat: prev.stat+1,
-                            rank: rank
+                            rank: rank.rank
+                        }));
+                    else
+                        this.setState(prev => ({
+                            stat: prev.stat+1,
+                            rank: null
                         }));
                 }
             );
-        userService.get_overall_metric_rank(year,this.gks[gk_index])
+        userService.get_overall_metric_rank_nh(year-1,this.gks[gk_index])
             .then(
                 rank => {
-                    this.setState(prev => ({
-                        stat: prev.stat+1,
-                        rank_last_year: rank
-                    }));
+                    if(rank)
+                        this.setState(prev => ({
+                            stat: prev.stat+1,
+                            rank_last_year: rank.rank
+                        }));
+                    else
+                        this.setState(prev => ({
+                            stat: prev.stat+1,
+                            rank_last_year: null
+                        }));
                 }
             );
     };
@@ -1092,8 +1104,8 @@ class gkjxzdf_nh extends React.Component{
                                     let rank=this.state.rank, rank_last_year = this.state.rank_last_year;
                                     let rank_change;
                                     if(!rank_last_year || rank === rank_last_year) rank_change = '与去年持平';
-                                    else if(rank > rank_last_year) rank_change = '比去年升高'+rank-rank_last_year+'位';
-                                    else rank_change = '比去年降低'+rank_last_year-rank+'位';
+                                    else if(rank > rank_last_year) rank_change = '比去年降低'+(rank-rank_last_year)+'位';
+                                    else rank_change = '比去年升高'+(rank_last_year-rank)+'位';
                                     doc.addPage();
                                     y = 20;
                                     p = '从港口绩效排名看，'+year+'年'+this.gks[gk_index]+'位列全国沿海第'+rank+'位，排名'+rank_change+'，见下图。';

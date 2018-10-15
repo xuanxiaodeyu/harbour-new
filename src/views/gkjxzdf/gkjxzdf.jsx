@@ -557,8 +557,8 @@ class gkjxzdf extends React.Component{
                                 { text: '码头靠\n泊能力', color:'#9932CC',max: 10},
                                 { text: '港口连通性', color:'#9932CC',max: 10},
                                 { text: '港口岸线\n利用率', color:'#9932CC',max: 10},
+                                { text: '港口通过能力\n适应度', color:'#9932CC',max: 10},
                                 { text: '港口作业\n效率', color:'#9932CC',max: 10},
-                                { text: '船舶在港\n平均停时', color:'#9932CC',max: 10},
                                 { text: '港口经\n济贡献', color:'#9932CC',max: 10},
                                 { text: '绿色港口\n等级', color:'#9932CC',max: 10},
                                 { text: '港口安全生产水平', color:'#9932CC',max: 10},
@@ -923,19 +923,31 @@ class gkjxzdf extends React.Component{
         userService.get_overall_metric_rank(year,this.gks[gk_index])
             .then(
                 rank => {
-                    this.setState(prev => ({
+                    if(rank)
+                        this.setState(prev => ({
                             stat: prev.stat+1,
-                            rank: rank
+                            rank: rank.rank
+                        }));
+                    else
+                        this.setState(prev => ({
+                            stat: prev.stat+1,
+                            rank: null
                         }));
                 }
             );
-        userService.get_overall_metric_rank(year,this.gks[gk_index])
+        userService.get_overall_metric_rank(year-1,this.gks[gk_index])
             .then(
                 rank => {
-                    this.setState(prev => ({
-                        stat: prev.stat+1,
-                        rank_last_year: rank
-                    }));
+                    if(rank)
+                        this.setState(prev => ({
+                            stat: prev.stat+1,
+                            rank_last_year: rank.rank
+                        }));
+                    else
+                        this.setState(prev => ({
+                            stat: prev.stat+1,
+                            rank_last_year: null
+                        }));
                 }
             );
     };
@@ -1105,8 +1117,8 @@ class gkjxzdf extends React.Component{
                                     let rank=this.state.rank, rank_last_year = this.state.rank_last_year;
                                     let rank_change;
                                     if(!rank_last_year || rank === rank_last_year) rank_change = '与去年持平';
-                                    else if(rank > rank_last_year) rank_change = '比去年升高'+rank-rank_last_year+'位';
-                                    else rank_change = '比去年降低'+rank_last_year-rank+'位';
+                                    else if(rank > rank_last_year) rank_change = '比去年降低'+(rank-rank_last_year)+'位';
+                                    else rank_change = '比去年升高'+(rank_last_year-rank)+'位';
                                     doc.addPage();
                                     y = 20;
                                     p = '从港口绩效排名看，'+year+'年'+this.gks[gk_index]+'位列全国沿海第'+rank+'位，排名'+rank_change+'，见下图。';

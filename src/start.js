@@ -935,11 +935,44 @@ expressApp.post('/overall_metric_for_trend', (req, res) => {
         })
 })
 
+expressApp.post('/overall_metric_nh_for_trend', (req, res) => {
+
+    store
+        .get_overall_metric_nh_for_trend({
+            gk: req.body.gk
+        })
+        .then(({responseJson}) => {
+            if (responseJson.success) {
+                res.json(responseJson);
+                res.sendStatus(200);
+            }
+            else res.sendStatus(401)
+        })
+})
+
 
 expressApp.post('/gkjxzdf', (req, res) => {
 
     store
         .get_gkjxzdf({
+            year: req.body.year,
+            gk: req.body.gk
+        })
+        .then(({responseJson}) => {
+            if (responseJson.success) {
+                //
+                //
+                res.json(responseJson);
+                res.sendStatus(200);
+            }
+            else res.sendStatus(401)
+        })
+})
+
+expressApp.post('/gkjxzdf_nh', (req, res) => {
+
+    store
+        .get_gkjxzdf_nh({
             year: req.body.year,
             gk: req.body.gk
         })
@@ -967,10 +1000,36 @@ expressApp.post('/gkjxzdf_year', (req, res) => {
         })
 })
 
+
+expressApp.post('/gkjxzdf_nh_year', (req, res) => {
+
+    store
+        .get_gkjxzdf_nh_year()
+        .then(({responseJson}) => {
+            if (responseJson.success) {
+                res.json(responseJson);
+                res.sendStatus(200);
+            }
+            else res.sendStatus(401)
+        })
+})
+
 expressApp.post('/gkjxzdf_gk', (req, res) => {
 
     store
         .get_gkjxzdf_gk()
+        .then(({responseJson}) => {
+            if (responseJson.success) {
+                res.json(responseJson);
+                res.sendStatus(200);
+            }
+            else res.sendStatus(401)
+        })
+})
+expressApp.post('/gkjxzdf_nh_gk', (req, res) => {
+
+    store
+        .get_gkjxzdf_nh_gk()
         .then(({responseJson}) => {
             if (responseJson.success) {
                 res.json(responseJson);
@@ -1027,6 +1086,22 @@ expressApp.post('/overall_metric_rank', (req, res) => {
         })
 })
 
+expressApp.post('/overall_metric_rank_nh', (req, res) => {
+    //
+    store
+        .get_overall_metric_rank_nh({
+            year: req.body.year,
+            gk: req.body.gk,
+        })
+        .then(({responseJson}) => {
+            if (responseJson.success) {
+                res.json(responseJson);
+                res.sendStatus(200);
+            }
+            else res.sendStatus(401)
+        })
+})
+
 expressApp.post('/overall_metric_for_order', (req, res) => {
     //
     store
@@ -1041,6 +1116,22 @@ expressApp.post('/overall_metric_for_order', (req, res) => {
             else res.sendStatus(401)
         })
 })
+
+expressApp.post('/overall_metric_nh_for_order', (req, res) => {
+    //
+    store
+        .get_overall_metric_nh_for_order({
+            year: req.body.year
+        })
+        .then(({responseJson}) => {
+            if (responseJson.success) {
+                res.json(responseJson);
+                res.sendStatus(200);
+            }
+            else res.sendStatus(401)
+        })
+})
+
 expressApp.post('/ddsr_year', (req, res) => {
 
     store

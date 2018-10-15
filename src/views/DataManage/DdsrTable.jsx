@@ -126,7 +126,7 @@ class DdsrTable extends React.Component {
                         gks.push(o);
                     });
                     editor.fields[1].values = gks;
-                    editor.fields[1].defaultValue = Object.keys(gks[0]);
+                    editor.fields[1].defaultValue = (Object.keys(gks[0]))[0];
                 })
     }
   render() {

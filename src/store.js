@@ -477,6 +477,29 @@ module.exports = {
                 })
         })
     },
+    get_table_jzxttl_nh(user) {
+        let gk_list = [];
+        return knex('user').where({username: user}).select('gk').then((row) => {
+            gk_list = row[0].gk.split(",");
+            return gk_list;
+        }).then((gk_list) => {
+            return knex.select('*').from('gkjzxttl_nh').whereIn('gk', gk_list)
+                .then((row) => {
+                    let responseJson = {
+                        rows: null,
+                        success: false
+                    };
+                    if (!row) {
+                        return {responseJson}
+                    }
+                    responseJson = {
+                        rows: row,
+                        success: true
+                    };
+                    return {responseJson};
+                })
+        })
+    },
     delete_from_table_jzxttl(ids) {
 
         return delete_from_table('yhgkjzxttl', ids)
@@ -488,6 +511,19 @@ module.exports = {
     insert_into_table_jzxttl(row) {
         return insert_into_table('call insert_yhgkjzxttl(?,?,?)', [row.year, row.gk, row.jzxttl])
     },
+
+    delete_from_table_jzxttl_nh(ids) {
+
+        return delete_from_table('gkjzxttl_nh', ids)
+    },
+    update_table_jzxttl_nh(row) {
+        return update_table('call update_gkjzxttl_nh(?,?,?,?)', [getRowIds(row), row[0].year, row[0].gk, row[0].jzxttl])
+
+    },
+    insert_into_table_jzxttl_nh(row) {
+        return insert_into_table('call insert_gkjzxttl_nh(?,?,?)', [row.year, row.gk, row.jzxttl])
+    },
+
     delete_from_table_hwttl(ids) {
         return delete_from_table('yhgkhwttl', ids)
     },
@@ -498,6 +534,17 @@ module.exports = {
     insert_into_table_hwttl({year, gk, gkhwttl}) {
 
         return insert_into_table('call insert_yhgkhwttl(?,?,?)', [year, gk, gkhwttl])
+    },
+    delete_from_table_hwttl_nh(ids) {
+        return delete_from_table('gkhwttl_nh', ids)
+    },
+    update_table_hwttl_nh(row) {
+        return update_table('call update_gkhwttl_nh(?,?,?,?)', [getRowIds(row), row[0].year, row[0].gk, row[0].gkhwttl])
+    },
+
+    insert_into_table_hwttl_nh({year, gk, gkhwttl}) {
+
+        return insert_into_table('call insert_gkhwttl_nh(?,?,?)', [year, gk, gkhwttl])
     },
 
 
@@ -546,6 +593,32 @@ module.exports = {
                 })
         })
     },
+
+    get_table_hwttl_nh(user) {
+
+        let gk_list = [];
+        return knex('user').where({username: user}).select('gk').then((row)=>{
+            gk_list = row[0].gk.split(",");
+            return gk_list;
+        }).then((gk_list)=> {
+            return knex.select('*').from('gkhwttl_nh').whereIn('gk', gk_list)
+                .then((row) => {
+                    let responseJson = {
+                        rows: null,
+                        success: false
+                    };
+                    if (!row) {
+                        return {responseJson}
+                    }
+                    responseJson = {
+                        rows: row,
+                        success: true
+                    };
+                    return {responseJson};
+                })
+        })
+    },
+
     get_mtnlsyd_metric({year}) {
 
         return knex.select('gk', 'metric').from('mtnlsyx').where({year: year}).orderBy('metric')

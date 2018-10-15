@@ -8,15 +8,15 @@ import {userService} from "../../_services";
 let editor = {
   ajax: {
       create: {
-          url: '/jzxttl',
+          url: '/jzxttl_nh',
           type: 'POST',
       },
       edit: {
-          url: '/jzxttl',
+          url: '/jzxttl_nh',
           type: 'PUT',
       },
       delete: {
-          url: '/jzxttl',
+          url: '/jzxttl_nh',
           type: 'DELETE',
       },
   },
@@ -35,7 +35,7 @@ let editor = {
           name: "gk",
           type: 'select',
           values: [],
-          defaultValue: '大连港',
+          defaultValue: '泸州港',
       },
       {
           label: "港口集装箱吞吐量:",
@@ -56,7 +56,7 @@ let settings = {
   lang: 'ch', // english default
   perPageRows: [25, 50, 100, 200, 500],
   defaultPerPage: 50,
-  ajax: '/get_table_jzxttl?user=test',
+  ajax: '/get_table_jzxttl_nh?user=test',
   requestType: 'GET',
   columns: [
     {
@@ -114,7 +114,7 @@ let settings = {
 
 class JzxttlTable extends React.Component {
     componentWillMount() {
-        settings.ajax = '/get_table_jzxttl?user='+cookies.get('username');
+        settings.ajax = '/get_table_jzxttl_nh?user='+cookies.get('username');
         userService.get_editor_gk(cookies.get('username'))
             .then(
                 gk => {
@@ -125,7 +125,7 @@ class JzxttlTable extends React.Component {
                         gks.push(o);
                     });
                     editor.fields[1].values = gks;
-                    editor.fields[1].defaultValue = Object.keys(gks[0]);
+                    editor.fields[1].defaultValue = (Object.keys(gks[0]))[0];
                 })
     }
   render() {

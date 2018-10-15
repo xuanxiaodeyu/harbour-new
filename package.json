@@ -19,7 +19,7 @@
     "echarts-for-react": "^2.0.6",
     "express": "^4.16.2",
     "express-jsx": "0.0.4",
-    "gigatables-react": "^2.7.11",
+    "gigatables-react": "2.7.11",
     "history": "4.7.2",
     "html-webpack-plugin": "^2.26.0",
     "knex": "^0.15.2",

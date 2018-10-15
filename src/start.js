@@ -163,6 +163,20 @@ expressApp.get('/get_table_jxztpj', (req, res) => {
         })
 })
 
+
+expressApp.get('/get_table_jxztpj_nh', (req, res) => {
+    store
+        .get_table_jxztpj_nh()
+        .then(({responseJson}) => {
+            if (responseJson.success) {
+
+                res.json(responseJson);
+                res.sendStatus(200);
+            }
+            else res.sendStatus(401)
+        })
+})
+
 expressApp.get('/get_table_qwdttlswrs', (req, res) => {
     store
         .get_table_qwdttlswrs(req.query.user)

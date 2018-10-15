@@ -43,7 +43,7 @@ import qwdttlswrs_nh from "views/qwdttlswrs_nh/qwdttlswrs_nh.jsx";
 import gkjxzdf from "views/gkjxzdf/gkjxzdf.jsx";
 import gkjxzdf_nh from "views/gkjxzdf_nh/gkjxzdf_nh.jsx";
 import DataManage from "views/DataManage/DataManage.jsx";
-
+import DataManage_nh from "views/DataManage_nh/DataManage_nh.jsx";
 
 //import pagesRoutes from "./pages.jsx";
 
@@ -215,7 +215,7 @@ var dashRoutesNormal = [
                 path: "/datamanage/neihe",
                 name: "内河数据管理",
                 mini: "",
-                component: DataManage
+                component: DataManage_nh
             }
         ]
     },

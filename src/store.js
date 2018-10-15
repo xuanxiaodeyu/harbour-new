@@ -137,6 +137,24 @@ module.exports = {
                 return {responseJson};
             })
     },
+
+    get_table_jxztpj_nh() {
+        return knex.select('*').from('overall_metric_nh')
+            .then((row) => {
+                let responseJson = {
+                    rows: null,
+                    success: false
+                };
+                if (!row) {
+                    return {responseJson}
+                }
+                responseJson = {
+                    rows: row,
+                    success: true
+                };
+                return {responseJson};
+            })
+    },
     delete_from_table_qwdttlswrs(ids) {
 
         return delete_from_table('qwdttlswrs', ids)

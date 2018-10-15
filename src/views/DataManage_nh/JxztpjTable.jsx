@@ -39,12 +39,12 @@ let editor = {
         },
         {
             label: "港口货物吞吐量:",
-            name: "yhgkhwttl",
+            name: "gkhwttl",
             type: 'text',
         },
         {
             label: "港口集装箱吞吐量:",
-            name: "yhgkjzxttl",
+            name: "gkjzxttl",
             type: 'text',
         },
         /*{
@@ -54,12 +54,12 @@ let editor = {
         },*/
         {
             label: "码头最大停泊能力:",
-            name: "gkmtkbnl",
+            name: "mtkbnl",
             type: 'text',
         },
         {
             label: "港口岸线利用率:",
-            name: "bmaxttl",
+            name: "gkaxlyxl",
             type: 'text',
         },
         {
@@ -74,7 +74,7 @@ let editor = {
         },*/
         {
             label: "港口经济贡献:",
-            name: "ddsr",
+            name: "gkjjgx",
             type: 'text',
         },
         {
@@ -84,7 +84,7 @@ let editor = {
         },
         {
             label: "港口安全生产水平:",
-            name: "qwdttlswrs",
+            name: "gkaqscsp",
             type: 'text',
         }
     ]
@@ -101,7 +101,7 @@ let settings = {
     lang: 'ch', // english default
     perPageRows: [25, 50, 100, 200, 500],
     defaultPerPage: 50,
-    ajax: '/get_table_jxztpj',
+    ajax: '/get_table_jxztpj_nh',
     requestType: 'GET',
     columns: [
         {
@@ -115,12 +115,12 @@ let settings = {
             searchable: true
         },
         {
-            data: "yhgkhwttl",
+            data: "gkhwttl",
             sortable: true,
             searchable: true
         },
         {
-            data: "yhgkjzxttl",
+            data: "gkjzxttl",
             sortable: true,
             searchable: true
         },
@@ -130,12 +130,12 @@ let settings = {
             searchable: true
         },*/
         {
-            data: "gkmtkbnl",
+            data: "mtkbnl",
             sortable: true,
             searchable: true
         },
         {
-            data: "bmaxttl",
+            data: "gkaxlyxl",
             sortable: true,
             searchable: true
         },
@@ -150,7 +150,7 @@ let settings = {
             searchable: true
         },*/
         {
-            data: "ddsr",
+            data: "gkjjgx",
             sortable: true,
             searchable: true
         },
@@ -160,7 +160,7 @@ let settings = {
             searchable: true
         },
         {
-            data: "qwdttlswrs",
+            data: "gkaqscsp",
             sortable: true,
             searchable: true
         },
@@ -322,16 +322,16 @@ class JxztpjTable extends React.Component {
                 >
                     <Header data="year">年</Header>
                     <Header data="gk">港口</Header>
-                    <Header data="yhgkhwttl">港口货物吞吐量</Header>
-                    <Header data="yhgkjzxttl">港口集装箱吞吐量</Header>
+                    <Header data="gkhwttl">港口货物吞吐量</Header>
+                    <Header data="gkjzxttl">港口集装箱吞吐量</Header>
                     {/*<Header data="dckbsl">港口连通性</Header>*/}
-                    <Header data="gkmtkbnl">码头最大停泊能力</Header>
-                    <Header data="bmaxttl">港口岸线利用率</Header>
+                    <Header data="mtkbnl">码头最大停泊能力</Header>
+                    <Header data="gkaxlyxl">港口岸线利用率</Header>
                     <Header data="mtnlsyx">港口通过能力适应度</Header>
                     {/*<Header data="cbzgpjts">港口作业效率</Header>*/}
-                    <Header data="ddsr">港口经济贡献</Header>
+                    <Header data="gkjjgx">港口经济贡献</Header>
                     <Header data="lsgkdj">绿色港口等级</Header>
-                    <Header data="qwdttlswrs">港口安全生产水平</Header>
+                    <Header data="gkaqscsp">港口安全生产水平</Header>
 
                 </Reactables>
                 {/*<Refresh */}

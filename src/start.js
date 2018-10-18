@@ -2106,6 +2106,18 @@ expressApp.get('/update_radar', (req, res) => {
         })
 })
 
+expressApp.get('/update_radar_nh', (req, res) => {
+    store.update_radar_nh()
+        .then(({responseJson}) => {
+            if (responseJson.success) {
+                res.json(responseJson);
+                res.sendStatus(200);
+            } else {
+                res.sendStatus(401);
+            }
+        })
+})
+
 expressApp.get('*', (req, res) => {
     res.redirect('/');
 })

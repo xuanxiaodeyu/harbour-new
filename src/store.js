@@ -2275,6 +2275,16 @@ module.exports = {
         }).catch(e => console.log(e));
     },
 
+    update_radar_nh() {
+        return knex.raw('call overall_metric_nh_generator()').then((test) => {
+
+            let responseJson = {
+                success: true
+            };
+            return {responseJson}
+        }).catch(e => console.log(e));
+    },
+
 
 
 

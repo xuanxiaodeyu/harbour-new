@@ -18,7 +18,7 @@ import {cookies} from "../../variables/general";
 let editor = {
     ajax: {
         reload: {
-            url: '/update_radar',
+            url: '/update_radar_nh',
             type: 'GET',
         }
     },
@@ -192,7 +192,7 @@ let settings = {
                         return;
                     }
                     var request = new XMLHttpRequest();
-                    request.open('GET', '/update_radar', false);  // `false` makes the request synchronous
+                    request.open('GET', '/update_radar_nh', false);  // `false` makes the request synchronous
                     alert("更新需要大约半分钟，在此期间浏览器无响应，请耐心等待...");
                     request.send(null);
                     if (request.status === 200) {

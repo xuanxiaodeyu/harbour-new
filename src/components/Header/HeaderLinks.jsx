@@ -92,105 +92,105 @@ class HeaderLinks extends React.Component {
         <Button color="primary" className={classes.button} onClick={this.handleLogout}>
             {cookies.get('username')} 注销
         </Button>
-        <IconButton
-          color="inherit"
-          aria-label="Dashboard"
-          className={rtlActive ? classes.buttonLinkRTL:classes.buttonLink}
-          classes={{
-            label: rtlActive ? classes.labelRTL:""
-          }}
-        >
-          <Dashboard className={rtlActive ? classes.links + " " + classes.linksRTL:classes.links} />
-          <Hidden mdUp>
-            <p className={classes.linkText}>
-              {rtlActive ? "لوحة القيادة" : "Dashboard"}
-            </p>
-          </Hidden>
-        </IconButton>
-        <Manager className={managerClasses}>
-          <Target>
-            <IconButton
-              color="inherit"
-              aria-label="Notifications"
-              aria-owns={open ? "menu-list" : null}
-              aria-haspopup="true"
-              onClick={this.handleClick}
-              className={rtlActive ? classes.buttonLinkRTL:classes.buttonLink}
-              classes={{
-                label: rtlActive ? classes.labelRTL:""
-              }}
-            >
-              <Notifications className={rtlActive ? classes.links + " " + classes.linksRTL:classes.links} />
-              <span className={classes.notifications}>3</span>
-              <Hidden mdUp>
-                <p onClick={this.handleClick} className={classes.linkText}>
-                  {rtlActive ? "إعلام" : "Notification"}
-                </p>
-              </Hidden>
-            </IconButton>
-          </Target>
-          <Popper
-            placement="bottom-start"
-            eventsEnabled={open}
-            className={
-              classNames({ [classes.popperClose]: !open }) +
-              " " +
-              classes.pooperResponsive
-            }
-          >
-            <ClickAwayListener onClickAway={this.handleClose}>
-              <Grow
-                in={open}
-                id="menu-list"
-                style={{ transformOrigin: "0 0 0" }}
-              >
-                <Paper className={classes.dropdown}>
-                  <MenuList role="menu">
-                    <MenuItem
-                      onClick={this.handleClose}
-                      className={dropdownItem}
-                    >
-                      {rtlActive
-                        ? "إجلاء أوزار الأسيوي حين بل, كما"
-                        : "系统通知"}
-                    </MenuItem>
-                    <MenuItem
-                      onClick={this.handleClose}
-                      className={dropdownItem}
-                    >
-                      {rtlActive
-                        ? "شعار إعلان الأرضية قد ذلك"
-                        : "定时提醒"}
-                    </MenuItem>
-                    <MenuItem
-                      onClick={this.handleClose}
-                      className={dropdownItem}
-                    >
-                      {rtlActive
-                        ? "ثمّة الخاصّة و على. مع جيما"
-                        : "您收到了一封邮件"}
-                    </MenuItem>
-                  </MenuList>
-                </Paper>
-              </Grow>
-            </ClickAwayListener>
-          </Popper>
-        </Manager>
-        <IconButton
-          color="inherit"
-          aria-label="Person"
-          className={rtlActive ? classes.buttonLinkRTL:classes.buttonLink}
-          classes={{
-            label: rtlActive ? classes.labelRTL:""
-          }}
-        >
-          <Person className={rtlActive ? classes.links + " " + classes.linksRTL:classes.links} />
-          <Hidden mdUp>
-            <p className={classes.linkText}>
-              {rtlActive ? "الملف الشخصي" : "Profile"}
-            </p>
-          </Hidden>
-        </IconButton>
+        {/*<IconButton*/}
+          {/*color="inherit"*/}
+          {/*aria-label="Dashboard"*/}
+          {/*className={rtlActive ? classes.buttonLinkRTL:classes.buttonLink}*/}
+          {/*classes={{*/}
+            {/*label: rtlActive ? classes.labelRTL:""*/}
+          {/*}}*/}
+        {/*>*/}
+          {/*<Dashboard className={rtlActive ? classes.links + " " + classes.linksRTL:classes.links} />*/}
+          {/*<Hidden mdUp>*/}
+            {/*<p className={classes.linkText}>*/}
+              {/*{rtlActive ? "لوحة القيادة" : "Dashboard"}*/}
+            {/*</p>*/}
+          {/*</Hidden>*/}
+        {/*</IconButton>*/}
+        {/*<Manager className={managerClasses}>*/}
+          {/*<Target>*/}
+            {/*<IconButton*/}
+              {/*color="inherit"*/}
+              {/*aria-label="Notifications"*/}
+              {/*aria-owns={open ? "menu-list" : null}*/}
+              {/*aria-haspopup="true"*/}
+              {/*onClick={this.handleClick}*/}
+              {/*className={rtlActive ? classes.buttonLinkRTL:classes.buttonLink}*/}
+              {/*classes={{*/}
+                {/*label: rtlActive ? classes.labelRTL:""*/}
+              {/*}}*/}
+            {/*>*/}
+              {/*<Notifications className={rtlActive ? classes.links + " " + classes.linksRTL:classes.links} />*/}
+              {/*<span className={classes.notifications}>3</span>*/}
+              {/*<Hidden mdUp>*/}
+                {/*<p onClick={this.handleClick} className={classes.linkText}>*/}
+                  {/*{rtlActive ? "إعلام" : "Notification"}*/}
+                {/*</p>*/}
+              {/*</Hidden>*/}
+            {/*</IconButton>*/}
+          {/*</Target>*/}
+          {/*<Popper*/}
+            {/*placement="bottom-start"*/}
+            {/*eventsEnabled={open}*/}
+            {/*className={*/}
+              {/*classNames({ [classes.popperClose]: !open }) +*/}
+              {/*" " +*/}
+              {/*classes.pooperResponsive*/}
+            {/*}*/}
+          {/*>*/}
+            {/*<ClickAwayListener onClickAway={this.handleClose}>*/}
+              {/*<Grow*/}
+                {/*in={open}*/}
+                {/*id="menu-list"*/}
+                {/*style={{ transformOrigin: "0 0 0" }}*/}
+              {/*>*/}
+                {/*<Paper className={classes.dropdown}>*/}
+                  {/*<MenuList role="menu">*/}
+                    {/*<MenuItem*/}
+                      {/*onClick={this.handleClose}*/}
+                      {/*className={dropdownItem}*/}
+                    {/*>*/}
+                      {/*{rtlActive*/}
+                        {/*? "إجلاء أوزار الأسيوي حين بل, كما"*/}
+                        {/*: "系统通知"}*/}
+                    {/*</MenuItem>*/}
+                    {/*<MenuItem*/}
+                      {/*onClick={this.handleClose}*/}
+                      {/*className={dropdownItem}*/}
+                    {/*>*/}
+                      {/*{rtlActive*/}
+                        {/*? "شعار إعلان الأرضية قد ذلك"*/}
+                        {/*: "定时提醒"}*/}
+                    {/*</MenuItem>*/}
+                    {/*<MenuItem*/}
+                      {/*onClick={this.handleClose}*/}
+                      {/*className={dropdownItem}*/}
+                    {/*>*/}
+                      {/*{rtlActive*/}
+                        {/*? "ثمّة الخاصّة و على. مع جيما"*/}
+                        {/*: "您收到了一封邮件"}*/}
+                    {/*</MenuItem>*/}
+                  {/*</MenuList>*/}
+                {/*</Paper>*/}
+              {/*</Grow>*/}
+            {/*</ClickAwayListener>*/}
+          {/*</Popper>*/}
+        {/*</Manager>*/}
+        {/*<IconButton*/}
+          {/*color="inherit"*/}
+          {/*aria-label="Person"*/}
+          {/*className={rtlActive ? classes.buttonLinkRTL:classes.buttonLink}*/}
+          {/*classes={{*/}
+            {/*label: rtlActive ? classes.labelRTL:""*/}
+          {/*}}*/}
+        {/*>*/}
+          {/*<Person className={rtlActive ? classes.links + " " + classes.linksRTL:classes.links} />*/}
+          {/*<Hidden mdUp>*/}
+            {/*<p className={classes.linkText}>*/}
+              {/*{rtlActive ? "الملف الشخصي" : "Profile"}*/}
+            {/*</p>*/}
+          {/*</Hidden>*/}
+        {/*</IconButton>*/}
       </div>
     );
   }

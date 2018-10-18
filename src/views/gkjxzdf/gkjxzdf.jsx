@@ -1102,8 +1102,8 @@ class gkjxzdf extends React.Component{
                                     doc.addFont('simhei.ttf', 'simhei', 'normal');
                                     doc.addFont('STHeitiBold.ttf', 'stheitibold', 'normal');
                                     doc.setFont('stheitibold');
-                                    doc.text(year+'年'+this.gks[gk_index]+'综合绩效评估',doc.internal.pageSize.getWidth() / 2,20,'center');
-                                    doc.text('分析报告',doc.internal.pageSize.getWidth() / 2,30,'center');
+                                    doc.text(year+'年'+this.gks[gk_index]+'综合绩效',doc.internal.pageSize.getWidth() / 2,20,'center');
+                                    doc.text('评估报告',doc.internal.pageSize.getWidth() / 2,30,'center');
                                     doc.setFont('simhei','normal');
                                     let p = year+'年'+this.gks[gk_index]+'综合绩效水平为'+overall_metric_for_radar.overall_metric+'分，较上一年'+(increase>=0?"提升":"下降")+'了'+Math.abs(increase)+'分。'+'从近三年发展情况来看，'+this.gks[gk_index]+'的综合绩效水平呈现'+trend+'态势，见下图。';
                                     let y = addParagraph(doc, 20, 40, p);

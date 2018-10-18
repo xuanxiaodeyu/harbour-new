@@ -11,15 +11,15 @@ import {cookies} from '../../variables/general';
 let editor = {
   ajax: {
       create: {
-          url: '/bmaxttl',
+          url: '/bmaxttl_nh',
           type: 'POST',
       },
       edit: {
-          url: '/bmaxttl',
+          url: '/bmaxttl_nh',
           type: 'PUT',
       },
       delete: {
-          url: '/bmaxttl',
+          url: '/bmaxttl_nh',
           type: 'DELETE',
       },
   },
@@ -39,31 +39,16 @@ let editor = {
           name: "gk",
           type: 'select',
           values: [],
-          defaultValue: '大连港',
+          defaultValue: '泸州港',
       },
       {
-          label: "集装箱泊位长度:",
-          name: "jzxbwcd",
+          label: "港口货物吞吐量:",
+          name: "gkhwttl",
           type: 'text',
       },
       {
-        label: "非集装箱泊位长度:",
-        name: "f_jzxbwcd",
-        type: 'text',
-      },
-      {
-        label: "集装箱吞吐量箱量:",
-        name: "jzxttl_xs",
-        type: 'text',
-      },
-      {
-        label: "集装箱吞吐量重量:",
-        name: "jzxttl_zl",
-        type: 'text',
-      },
-      {
-        label: "非集装箱吞吐量:",
-        name: "f_jzxttl_zl",
+        label: "码头岸线长度:",
+        name: "mtaxcd",
         type: 'text',
       },
   ]
@@ -80,7 +65,7 @@ let settings = {
   lang: 'ch', // english default
   perPageRows: [25, 50, 100, 200, 500],
   defaultPerPage: 50,
-  ajax: '/get_table_bmaxttl?user=test',
+  ajax: '/get_table_bmaxttl_nh?user=test',
     //ajax: '/get_table_bmaxttl?user='+userActions.currentUsername.prop,
   requestType: 'GET',
   columns: [
@@ -95,32 +80,22 @@ let settings = {
       searchable: true
     },
     {
-      data: "jzxbwcd",
+      data: "gkhwttl",
       sortable: true,
       searchable: true
     },
     {
-      data: "f_jzxbwcd",
+      data: "mtaxcd",
       sortable: true,
       searchable: true
     },
     {
-      data: "jzxttl_xs",
+      data: "bmmtaxttl",
       sortable: true,
       searchable: true
     },
     {
-      data: "jzxttl_zl",
-      sortable: true,
-      searchable: true
-    },
-    {
-      data: "f_jzxttl_zl",
-      sortable: true,
-      searchable: true
-    },
-    {
-      data: "total_metric",
+      data: "metric",
       sortable: true,
       searchable: true
     },
@@ -160,7 +135,7 @@ let settings = {
 class BmaxttlTable extends React.Component {
     componentWillMount() {
         //console.log(cookies.get('username'));
-        settings.ajax = '/get_table_bmaxttl?user='+cookies.get('username');
+        settings.ajax = '/get_table_bmaxttl_nh?user='+cookies.get('username');
         userService.get_editor_gk(cookies.get('username'))
             .then(
                 gk => {
@@ -179,12 +154,10 @@ class BmaxttlTable extends React.Component {
       <Reactables editor={editor} settings={settings}>
         <Header data="year">年</Header>
         <Header data="gk">港口</Header>
-        <Header data="jzxbwcd">集装箱泊位<br/>长度（米）</Header>
-        <Header data="f_jzxbwcd">非集装箱泊位<br/>长度（米）</Header>
-        <Header data="jzxttl_xs">集装箱吞吐量<br/>箱量（万TEU）</Header>
-        <Header data="jzxttl_zl">集装箱吞吐量<br/>重量（万吨）</Header>
-        <Header data="f_jzxttl_zl">非集装箱<br/>吞吐量（万吨）</Header>
-        <Header data="total_metric">指标值</Header>
+        <Header data="gkhwttl">港口货物吞吐量<br/>重量（万吨）</Header>
+        <Header data="mtaxcd">码头岸线长度<br/>长度（米）</Header>
+        <Header data="百米码头岸线吞吐量">集装箱吞吐量<br/>吞吐量（万吨/百米）</Header>
+        <Header data="metric">指标值</Header>
       </Reactables>
     );
   }

@@ -9,15 +9,15 @@ import {userService} from "../../_services";
 let editor = {
   ajax: {
       create: {
-          url: '/lsgkdj',
+          url: '/lsgkdj_nh',
           type: 'POST',
       },
       edit: {
-          url: '/lsgkdj',
+          url: '/lsgkdj_nh',
           type: 'PUT',
       },
       delete: {
-          url: '/lsgkdj',
+          url: '/lsgkdj_nh',
           type: 'DELETE',
       },
   },
@@ -36,7 +36,7 @@ let editor = {
           name: "gk",
           type: 'select',
           values: [],
-          defaultValue: '大连港',
+          defaultValue: '泸州港',
       },
       {
           label: "绿色港口等级:",
@@ -57,7 +57,7 @@ let settings = {
   lang: 'ch', // english default
   perPageRows: [25, 50, 100, 200, 500],
   defaultPerPage: 50,
-  ajax: '/get_table_lsgkdj?user=test',
+  ajax: '/get_table_lsgkdj_nh?user=test',
   requestType: 'GET',
   columns: [
     {
@@ -110,7 +110,7 @@ let settings = {
 
 class LsgkdjTable extends React.Component {
     componentWillMount() {
-        settings.ajax = '/get_table_lsgkdj?user='+cookies.get('username');
+        settings.ajax = '/get_table_lsgkdj_nh?user='+cookies.get('username');
         userService.get_editor_gk(cookies.get('username'))
             .then(
                 gk => {

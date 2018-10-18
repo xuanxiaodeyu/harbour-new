@@ -97,7 +97,29 @@ module.exports = {
                 })
         })
     },
-
+    get_table_qwdttlswrs_nh(user) {
+        let gk_list = [];
+        return knex('user').where({username: user}).select('gk').then((row) => {
+            gk_list = row[0].gk.split(",");
+            return gk_list;
+        }).then((gk_list) => {
+            return knex.select('*').from('qwdttlswrs_nh').whereIn('gk', gk_list)
+                .then((row) => {
+                    let responseJson = {
+                        rows: null,
+                        success: false
+                    };
+                    if (!row) {
+                        return {responseJson}
+                    }
+                    responseJson = {
+                        rows: row,
+                        success: true
+                    };
+                    return {responseJson};
+                })
+        })
+    },
 
     get_editor_gk(user) {
         console.log(user);
@@ -166,6 +188,17 @@ module.exports = {
 
         return insert_into_table('call insert_qwdttlswrs(?,?,?)', [row.year, row.gk, row.qwdttlswrs])
     },
+    delete_from_table_qwdttlswrs_nh(ids) {
+
+        return delete_from_table('qwdttlswrs_nh', ids)
+    },
+    update_table_qwdttlswrs_nh(row) {
+        return update_table('call update_qwdttlswrs_nh(?,?,?,?)', [getRowIds(row), row[0].year, row[0].gk, row[0].gkaqscsp])
+    },
+    insert_into_table_qwdttlswrs_nh(row) {
+
+        return insert_into_table('call insert_qwdttlswrs_nh(?,?,?)', [row.year, row.gk, row.gkaqscsp])
+    },
     get_table_lsgkdj(user) {
         let gk_list = [];
         return knex('user').where({username: user}).select('gk').then((row) => {
@@ -173,6 +206,30 @@ module.exports = {
             return gk_list;
         }).then((gk_list) => {
             return knex.select('*').from('lsgkdj').whereIn('gk', gk_list)
+                .then((row) => {
+
+                    let responseJson = {
+                        rows: null,
+                        success: false
+                    };
+                    if (!row) {
+                        return {responseJson}
+                    }
+                    responseJson = {
+                        rows: row,
+                        success: true
+                    };
+                    return {responseJson};
+                })
+        })
+    },
+    get_table_lsgkdj_nh(user) {
+        let gk_list = [];
+        return knex('user').where({username: user}).select('gk').then((row) => {
+            gk_list = row[0].gk.split(",");
+            return gk_list;
+        }).then((gk_list) => {
+            return knex.select('*').from('lsgkdj_nh').whereIn('gk', gk_list)
                 .then((row) => {
 
                     let responseJson = {
@@ -202,7 +259,18 @@ module.exports = {
 
         return insert_into_table('call insert_lsgkdj(?,?,?)', [row.year, row.gk, row.lsgkdj])
     },
+    delete_from_table_lsgkdj_nh(ids) {
 
+        return delete_from_table('lsgkdj_nh', ids)
+    },
+    update_table_lsgkdj_nh(row) {
+        return update_table('call update_lsgkdj_nh(?,?,?,?)', [getRowIds(row), row[0].year, row[0].gk, row[0].lsgkdj])
+
+    },
+    insert_into_table_lsgkdj_nh(row) {
+
+        return insert_into_table('call insert_lsgkdj_nh(?,?,?)', [row.year, row.gk, row.lsgkdj])
+    },
     get_table_ddsr(user) {
         let gk_list = [];
         return knex('user').where({username: user}).select('gk').then((row) => {
@@ -210,6 +278,30 @@ module.exports = {
             return gk_list;
         }).then((gk_list) => {
             return knex.select('*').from('ddsr').whereIn('gk', gk_list)
+                .then((row) => {
+
+                    let responseJson = {
+                        rows: null,
+                        success: false
+                    };
+                    if (!row) {
+                        return {responseJson}
+                    }
+                    responseJson = {
+                        rows: row,
+                        success: true
+                    };
+                    return {responseJson};
+                })
+        })
+    },
+    get_table_ddsr_nh(user) {
+        let gk_list = [];
+        return knex('user').where({username: user}).select('gk').then((row) => {
+            gk_list = row[0].gk.split(",");
+            return gk_list;
+        }).then((gk_list) => {
+            return knex.select('*').from('ddsr_nh').whereIn('gk', gk_list)
                 .then((row) => {
 
                     let responseJson = {
@@ -237,6 +329,17 @@ module.exports = {
     },
     insert_into_table_ddsr(row) {
         return insert_into_table('call insert_ddsr(?,?,?)', [row.year, row.gk, row.ddsr])
+    },
+    delete_from_table_ddsr_nh(ids) {
+
+        return delete_from_table('ddsr_nh', ids)
+    },
+    update_table_ddsr_nh(row) {
+        return update_table('call update_ddsr_nh(?,?,?,?)', [getRowIds(row), row[0].year, row[0].gk, row[0].gkzjz])
+
+    },
+    insert_into_table_ddsr_nh(row) {
+        return insert_into_table('call insert_ddsr_nh(?,?,?)', [row.year, row.gk, row.gkzjz])
     },
     get_table_cbzgpjts(user) {
         let gk_list = [];
@@ -300,6 +403,33 @@ module.exports = {
         //gk_list = ['大连港','烟台港'];
 
     },
+    get_table_bmaxttl_nh(user) {
+        //return knex.select('*').from('bmaxttl')
+        //knex('user').where({username: user}).select('gk');
+        let gk_list = [];
+        return knex('user').where({username: user}).select('gk').then((row) => {
+            gk_list = row[0].gk.split(",");
+            return gk_list;
+        }).then((gk_list) => {
+            return knex.select('*').from('bmaxttl_nh').whereIn('gk', gk_list)
+                .then((row) => {
+                    let responseJson = {
+                        rows: null,
+                        success: false
+                    };
+                    if (!row) {
+                        return {responseJson}
+                    }
+                    responseJson = {
+                        rows: row,
+                        success: true
+                    };
+                    return {responseJson};
+                })
+        })
+        //gk_list = ['大连港','烟台港'];
+
+    },
     async get_bmaxttl_zbwcd({year}) {
         let row = await knex.select('gk', 'zbwcd')
             .from('bmaxttl')
@@ -343,6 +473,30 @@ module.exports = {
                 })
         })
     },
+    get_table_mtnlsyx_nh(user) {
+        let gk_list = [];
+        return knex('user').where({username: user}).select('gk').then((row) => {
+            gk_list = row[0].gk.split(",");
+            return gk_list;
+        }).then((gk_list) => {
+            return knex.select('*').from('mtnlsyx_nh').whereIn('gk', gk_list)
+                .then((row) => {
+
+                    let responseJson = {
+                        rows: null,
+                        success: false
+                    };
+                    if (!row) {
+                        return {responseJson}
+                    }
+                    responseJson = {
+                        rows: row,
+                        success: true
+                    };
+                    return {responseJson};
+                })
+        })
+    },
     delete_from_table_mtnlsyx(ids) {
 
         return delete_from_table('mtnlsyx', ids)
@@ -353,6 +507,17 @@ module.exports = {
     },
     insert_into_table_mtnlsyx(row) {
         return insert_into_table('call insert_mtnlsyx(?,?,?,?)', [row.year, row.gk, row.mttgnl, row.hwttl])
+    },
+    delete_from_table_mtnlsyx_nh(ids) {
+
+        return delete_from_table('mtnlsyx_nh', ids)
+    },
+    update_table_mtnlsyx_nh(row) {
+        return update_table('call update_mtnlsyx_nh(?,?,?,?,?)', [getRowIds(row), row[0].year, row[0].gk, row[0].mttgnl, row[0].gkhwttl])
+
+    },
+    insert_into_table_mtnlsyx_nh(row) {
+        return insert_into_table('call insert_mtnlsyx_nh(?,?,?,?)', [row.year, row.gk, row.mttgnl, row.gkhwttl])
     },
     delete_from_table_bmaxttl(ids) {
 
@@ -383,7 +548,18 @@ module.exports = {
             }).catch(e => console.log(e))*/
 
     },
+    delete_from_table_bmaxttl_nh(ids) {
 
+        return delete_from_table('bmaxttl_nh', ids)
+    },
+    update_table_bmaxttl_nh(row) {
+        return update_table('call update_bmaxttl_nh(?,?,?,?,?)', [getRowIds(row), row[0].year, row[0].gk, row[0].gkhwttl, row[0].mtaxcd])
+
+    },
+    insert_into_table_bmaxttl_nh(row) {
+        return insert_into_table('call insert_bmaxttl_nh(?,?,?,?)', [row.year,row.gk,row.gkhwttl,row.mtaxcd]);
+
+    },
     get_table_dckbsl(user) {
         let gk_list = [];
         return knex('user').where({username: user}).select('gk').then((row) => {
@@ -444,6 +620,30 @@ module.exports = {
                 })
         })
     },
+    get_table_mtkbnl_nh(user) {
+        let gk_list = [];
+        return knex('user').where({username: user}).select('gk').then((row) => {
+            gk_list = row[0].gk.split(",");
+            return gk_list;
+        }).then((gk_list) => {
+            return knex.select('*').from('gkmtkbnl_nh').whereIn('gk', gk_list)
+                .then((row) => {
+
+                    let responseJson = {
+                        rows: null,
+                        success: false
+                    };
+                    if (!row) {
+                        return {responseJson}
+                    }
+                    responseJson = {
+                        rows: row,
+                        success: true
+                    };
+                    return {responseJson};
+                })
+        })
+    },
     delete_from_table_mtkbnl(ids) {
 
         return delete_from_table('gkmtkbnl', ids)
@@ -454,6 +654,18 @@ module.exports = {
     insert_into_table_mtkbnl(row) {
         return insert_into_table('call insert_gkmtkbnl(?,?,?,?,?,?,?)', [row.year, row.gk, row.mt_bw, row.yy_bw, row.jsks_bw, row.jzx_bw, row.other_bw])
     },
+
+    delete_from_table_mtkbnl_nh(ids) {
+
+        return delete_from_table('gkmtkbnl_nh', ids)
+    },
+    update_table_mtkbnl_nh(row) {
+        return update_table('call update_gkmtkbnl_nh(?,?,?,?,?)', [getRowIds(row), row[0].year, row[0].gk, row[0].mtzdkbnl, row[0].metric])
+    },
+    insert_into_table_mtkbnl_nh(row) {
+        return insert_into_table('call insert_gkmtkbnl_nh(?,?,?,?)', [row.year, row.gk, row.mtzdkbnl, row.metric])
+    },
+
     get_table_jzxttl(user) {
         let gk_list = [];
         return knex('user').where({username: user}).select('gk').then((row) => {

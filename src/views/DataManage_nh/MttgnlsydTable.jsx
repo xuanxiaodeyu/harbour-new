@@ -8,15 +8,15 @@ import {userService} from "../../_services";
 let editor = {
   ajax: {
       create: {
-          url: '/mtnlsyx',
+          url: '/mtnlsyx_nh',
           type: 'POST',
       },
       edit: {
-          url: '/mtnlsyx',
+          url: '/mtnlsyx_nh',
           type: 'PUT',
       },
       delete: {
-          url: '/mtnlsyx',
+          url: '/mtnlsyx_nh',
           type: 'DELETE',
       },
   },
@@ -44,7 +44,7 @@ let editor = {
       },
       {
         label: "货物吞吐量:",
-        name: "hwttl",
+        name: "gkhwttl",
         type: 'text',
     },
   ]
@@ -61,7 +61,7 @@ let settings = {
   lang: 'ch', // english default
   perPageRows: [25, 50, 100, 200, 500],
   defaultPerPage: 50,
-  ajax: '/get_table_mtnlsyx?user=test',
+  ajax: '/get_table_mtnlsyx_nh?user=test',
   requestType: 'GET',
   columns: [
     {
@@ -80,10 +80,15 @@ let settings = {
       searchable: true
     },
     {
-      data: "hwttl",
-      sortable: true,
-      searchable: true
-    },
+          data: "gkhwttl",
+          sortable: true,
+          searchable: true
+      },
+      {
+          data: "gktgnlsyd",
+          sortable: true,
+          searchable: true
+      },
     {
       data: "metric",
       sortable: true,
@@ -124,7 +129,7 @@ let settings = {
 
 class MttgnlsydTable extends React.Component {
     componentWillMount() {
-        settings.ajax = '/get_table_mtnlsyx?user='+cookies.get('username');
+        settings.ajax = '/get_table_mtnlsyx_nh?user='+cookies.get('username');
         userService.get_editor_gk(cookies.get('username'))
             .then(
                 gk => {
@@ -144,7 +149,8 @@ class MttgnlsydTable extends React.Component {
         <Header data="year">年</Header>
         <Header data="gk">港口</Header>
         <Header data="mttgnl">码头通过能力（万吨）</Header>
-        <Header data="hwttl">货物吞吐量（万吨）</Header>
+        <Header data="gkhwttl">货物吞吐量（万吨）</Header>
+        <Header data="gktgnlsyd">港口能力适应度</Header>
         <Header data="metric">指标值</Header>
       </Reactables>
     );

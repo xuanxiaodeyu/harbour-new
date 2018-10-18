@@ -8,15 +8,15 @@ import {userService} from "../../_services";
 let editor = {
   ajax: {
       create: {
-          url: '/mtkbnl',
+          url: '/mtkbnl_nh',
           type: 'POST',
       },
       edit: {
-          url: '/mtkbnl',
+          url: '/mtkbnl_nh',
           type: 'PUT',
       },
       delete: {
-          url: '/mtkbnl',
+          url: '/mtkbnl_nh',
           type: 'DELETE',
       },
   },
@@ -35,33 +35,18 @@ let editor = {
           name: "gk",
           type: 'select',
           values: [],
-          defaultValue: '大连港',
+          defaultValue: '泸州港',
       },
       {
-          label: "煤炭泊位:",
-          name: "mt_bw",
+          label: "码头最大靠泊能力:",
+          name: "mtzdkbnl",
           type: 'text',
       },
       {
-        label: "原油泊位:",
-        name: "yy_bw",
-        type: 'text',
-      },
-      {
-        label: "金属矿石泊位:",
-        name: "jsks_bw",
-        type: 'text',
-      },
-      {
-        label: "集装箱泊位:",
-        name: "jzx_bw",
-        type: 'text',
-      },
-      {
-        label: "其它泊位:",
-        name: "other_bw",
-        type: 'text',
-      },
+          label: "指标值:",
+          name: "metric",
+          type: 'text',
+      }
   ]
 };
 
@@ -76,7 +61,7 @@ let settings = {
   lang: 'ch', // english default
   perPageRows: [25, 50, 100, 200, 500],
   defaultPerPage: 50,
-  ajax: '/get_table_mtkbnl?user=test',
+  ajax: '/get_table_mtkbnl_nh?user=test',
   requestType: 'GET',
   columns: [
     {
@@ -89,41 +74,16 @@ let settings = {
       sortable: true,
       searchable: true
     },
-    {
-      data: "mt_bw",
-      sortable: true,
-      searchable: true
-    },
-    {
-      data: "yy_bw",
-      sortable: true,
-      searchable: true
-    },
-    {
-      data: "jsks_bw",
-      sortable: true,
-      searchable: true
-    },
-    {
-      data: "jzx_bw",
-      sortable: true,
-      searchable: true
-    },
-    {
-      data: "other_bw",
-      sortable: true,
-      searchable: true
-    },
-    {
-      data: "max_bw",
-      sortable: true,
-      searchable: true
-    },
-    {
-      data: "total_metric",
-      sortable: true,
-      searchable: true
-    },
+      {
+          data: "mtzdkbnl",
+          sortable: true,
+          searchable: true
+      },
+      {
+          data: "metric",
+          sortable: true,
+          searchable: true
+      }
   ],
   columnOpts: [
     {
@@ -159,7 +119,7 @@ let settings = {
 
 class MtkbnlTable extends React.Component {
     componentWillMount() {
-        settings.ajax = '/get_table_mtkbnl?user='+cookies.get('username');
+        settings.ajax = '/get_table_mtkbnl_nh?user='+cookies.get('username');
         userService.get_editor_gk(cookies.get('username'))
             .then(
                 gk => {
@@ -178,13 +138,8 @@ class MtkbnlTable extends React.Component {
       <Reactables editor={editor} settings={settings}>
         <Header data="year">年</Header>
         <Header data="gk">港口</Header>
-        <Header data="mt_bw">煤炭泊位</Header>
-        <Header data="yy_bw">原油泊位</Header>
-        <Header data="jsks_bw">金属矿石泊位</Header>
-        <Header data="jzx_bw">集装箱泊位</Header>
-        <Header data="other_bw">其它泊位</Header>
-        <Header data="max_bw">最大泊位</Header>
-        <Header data="total_metric">指标值</Header>
+          <Header data="mtzdkbnl">码头最大靠泊能力（万吨级）</Header>
+        <Header data="metric">指标值</Header>
       </Reactables>
     );
   }

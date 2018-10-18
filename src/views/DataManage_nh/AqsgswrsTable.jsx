@@ -9,15 +9,15 @@ import {cookies} from '../../variables/general';
 let editor = {
   ajax: {
       create: {
-          url: '/qwdttlswrs',
+          url: '/qwdttlswrs_nh',
           type: 'POST',
       },
       edit: {
-          url: '/qwdttlswrs',
+          url: '/qwdttlswrs_nh',
           type: 'PUT',
       },
       delete: {
-          url: '/qwdttlswrs',
+          url: '/qwdttlswrs_nh',
           type: 'DELETE',
       },
   },
@@ -36,11 +36,11 @@ let editor = {
           name: "gk",
           type: 'select',
           values: [],
-          defaultValue: '大连港',
+          defaultValue: '泸州港',
       },
       {
           label: "港口安全生产水平:",
-          name: "qwdttlswrs",
+          name: "gkaqscsp",
           type: 'text',
       },
   ]
@@ -57,7 +57,7 @@ let settings = {
   lang: 'ch', // english default
   perPageRows: [25, 50, 100, 200, 500],
   defaultPerPage: 50,
-  ajax: '/get_table_qwdttlswrs?user=test',
+  ajax: '/get_table_qwdttlswrs_nh?user=test',
   requestType: 'GET',
   columns: [
     {
@@ -71,12 +71,7 @@ let settings = {
       searchable: true
     },
     {
-      data: "qwdttlswrs",
-      sortable: true,
-      searchable: true
-    },
-    {
-      data: "metric",
+      data: "gkaqscsp",
       sortable: true,
       searchable: true
     },
@@ -115,7 +110,7 @@ let settings = {
 
 class AqsgswrsTable extends React.Component {
     componentWillMount() {
-        settings.ajax = '/get_table_qwdttlswrs?user='+cookies.get('username');
+        settings.ajax = '/get_table_qwdttlswrs_nh?user='+cookies.get('username');
         userService.get_editor_gk(cookies.get('username'))
             .then(
                 gk => {
@@ -134,8 +129,7 @@ class AqsgswrsTable extends React.Component {
       <Reactables editor={editor} settings={settings}>
         <Header data="year">年</Header>
         <Header data="gk">港口</Header>
-        <Header data="qwdttlswrs">千万吨吞吐量港口安全生产水平</Header>
-        <Header data="metric">指标值</Header>
+        <Header data="gkaqscsp">港口安全生产水平</Header>
       </Reactables>
     );
   }

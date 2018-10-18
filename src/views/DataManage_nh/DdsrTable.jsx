@@ -9,15 +9,15 @@ import {cookies} from '../../variables/general';
 let editor = {
   ajax: {
       create: {
-          url: '/ddsr',
+          url: '/ddsr_nh',
           type: 'POST',
       },
       edit: {
-          url: '/ddsr',
+          url: '/ddsr_nh',
           type: 'PUT',
       },
       delete: {
-          url: '/ddsr',
+          url: '/ddsr_nh',
           type: 'DELETE',
       },
   },
@@ -36,11 +36,11 @@ let editor = {
           name: "gk",
           type: 'select',
           values: [],
-          defaultValue: '大连港',
+          defaultValue: '泸州港',
       },
       {
-          label: "港口经济贡献:",
-          name: "ddsr",
+          label: "港口增加值:",
+          name: "gkzjz",
           type: 'text',
       },
   ]
@@ -57,7 +57,7 @@ let settings = {
   lang: 'ch', // english default
   perPageRows: [25, 50, 100, 200, 500],
   defaultPerPage: 50,
-  ajax: '/get_table_ddsr?user=test',
+  ajax: '/get_table_ddsr_nh?user=test',
   requestType: 'GET',
   columns: [
     {
@@ -71,7 +71,7 @@ let settings = {
       searchable: true
     },
     {
-      data: "ddsr",
+      data: "gkzjz",
       sortable: true,
       searchable: true
     },
@@ -115,7 +115,7 @@ let settings = {
 
 class DdsrTable extends React.Component {
     componentWillMount() {
-        settings.ajax = '/get_table_ddsr?user='+cookies.get('username');
+        settings.ajax = '/get_table_ddsr_nh?user='+cookies.get('username');
         userService.get_editor_gk(cookies.get('username'))
             .then(
                 gk => {
@@ -134,7 +134,7 @@ class DdsrTable extends React.Component {
       <Reactables editor={editor} settings={settings}>
         <Header data="year">年</Header>
         <Header data="gk">港口</Header>
-        <Header data="ddsr">港口经济贡献（元/吨）</Header>
+        <Header data="gkzjz">港口增加值（亿元）</Header>
         <Header data="metric">指标值</Header>
       </Reactables>
     );

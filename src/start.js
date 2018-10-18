@@ -190,6 +190,19 @@ expressApp.get('/get_table_qwdttlswrs', (req, res) => {
             else res.sendStatus(401)
         })
 })
+expressApp.get('/get_table_qwdttlswrs_nh', (req, res) => {
+    store
+        .get_table_qwdttlswrs_nh(req.query.user)
+        .then(({responseJson}) => {
+            if (responseJson.success) {
+
+
+                res.json(responseJson);
+                res.sendStatus(200);
+            }
+            else res.sendStatus(401)
+        })
+})
 expressApp.post('/qwdttlswrs', (req, res) => {
 
     store
@@ -230,10 +243,62 @@ expressApp.delete('/qwdttlswrs', (req, res) => {
             res.json({delCount: delCount});
         })
 })
+expressApp.post('/qwdttlswrs_nh', (req, res) => {
 
+    store
+        .insert_into_table_qwdttlswrs_nh(req.body)
+        .then(({responseJson}) => {
+            if (responseJson.success) {
+                res.json(responseJson);
+                res.sendStatus(200);
+            }
+            else res.sendStatus(401)
+        })
+})
+expressApp.put('/qwdttlswrs_nh', (req, res) => {
+
+    store
+        .update_table_qwdttlswrs_nh(
+            req.body
+        )
+        .then(({responseJson}) => {
+            if (responseJson.success) {
+                res.json(responseJson);
+                res.sendStatus(200);
+            }
+            //520 means database access failure.
+            else res.sendStatus(520)
+        })
+})
+
+expressApp.delete('/qwdttlswrs_nh', (req, res) => {
+
+    store
+        .delete_from_table_qwdttlswrs_nh(
+            req.body
+        )
+        .then(({delCount}) => {
+
+
+            res.json({delCount: delCount});
+        })
+})
 expressApp.get('/get_table_lsgkdj', (req, res) => {
     store
         .get_table_lsgkdj(req.query.user)
+        .then(({responseJson}) => {
+            if (responseJson.success) {
+
+
+                res.json(responseJson);
+                res.sendStatus(200);
+            }
+            else res.sendStatus(401)
+        })
+})
+expressApp.get('/get_table_lsgkdj_nh', (req, res) => {
+    store
+        .get_table_lsgkdj_nh(req.query.user)
         .then(({responseJson}) => {
             if (responseJson.success) {
 
@@ -284,10 +349,63 @@ expressApp.delete('/lsgkdj', (req, res) => {
             res.json({delCount: delCount});
         })
 })
+expressApp.post('/lsgkdj_nh', (req, res) => {
+
+    store
+        .insert_into_table_lsgkdj_nh(req.body)
+        .then(({responseJson}) => {
+            if (responseJson.success) {
+                res.json(responseJson);
+                res.sendStatus(200);
+            }
+            else res.sendStatus(401)
+        })
+})
+expressApp.put('/lsgkdj_nh', (req, res) => {
+
+    store
+        .update_table_lsgkdj_nh(
+            req.body
+        )
+        .then(({responseJson}) => {
+            if (responseJson.success) {
+                res.json(responseJson);
+                res.sendStatus(200);
+            }
+            //520 means database access failure.
+            else res.sendStatus(520)
+        })
+})
+
+expressApp.delete('/lsgkdj_nh', (req, res) => {
+
+    store
+        .delete_from_table_lsgkdj_nh(
+            req.body
+        )
+        .then(({delCount}) => {
+
+
+            res.json({delCount: delCount});
+        })
+})
 
 expressApp.get('/get_table_ddsr', (req, res) => {
     store
         .get_table_ddsr(req.query.user)
+        .then(({responseJson}) => {
+            if (responseJson.success) {
+
+
+                res.json(responseJson);
+                res.sendStatus(200);
+            }
+            else res.sendStatus(401)
+        })
+})
+expressApp.get('/get_table_ddsr_nh', (req, res) => {
+    store
+        .get_table_ddsr_nh(req.query.user)
         .then(({responseJson}) => {
             if (responseJson.success) {
 
@@ -330,6 +448,46 @@ expressApp.delete('/ddsr', (req, res) => {
 
     store
         .delete_from_table_ddsr(
+            req.body
+        )
+        .then(({delCount}) => {
+
+
+            res.json({delCount: delCount});
+        })
+})
+expressApp.post('/ddsr_nh', (req, res) => {
+
+    store
+        .insert_into_table_ddsr_nh(req.body)
+        .then(({responseJson}) => {
+            if (responseJson.success) {
+                res.json(responseJson);
+                res.sendStatus(200);
+            }
+            else res.sendStatus(401)
+        })
+})
+expressApp.put('/ddsr_nh', (req, res) => {
+
+    store
+        .update_table_ddsr_nh(
+            req.body
+        )
+        .then(({responseJson}) => {
+            if (responseJson.success) {
+                res.json(responseJson);
+                res.sendStatus(200);
+            }
+            //520 means database access failure.
+            else res.sendStatus(520)
+        })
+})
+
+expressApp.delete('/ddsr_nh', (req, res) => {
+
+    store
+        .delete_from_table_ddsr_nh(
             req.body
         )
         .then(({delCount}) => {
@@ -406,6 +564,20 @@ expressApp.get('/get_table_mtnlsyx', (req, res) => {
             else res.sendStatus(401)
         })
 })
+
+expressApp.get('/get_table_mtnlsyx_nh', (req, res) => {
+    store
+        .get_table_mtnlsyx_nh(req.query.user)
+        .then(({responseJson}) => {
+            if (responseJson.success) {
+
+
+                res.json(responseJson);
+                res.sendStatus(200);
+            }
+            else res.sendStatus(401)
+        })
+})
 expressApp.post('/mtnlsyx', (req, res) => {
 
     store
@@ -446,10 +618,61 @@ expressApp.delete('/mtnlsyx', (req, res) => {
             res.json({delCount: delCount});
         })
 })
+expressApp.post('/mtnlsyx_nh', (req, res) => {
+
+    store
+        .insert_into_table_mtnlsyx_nh(req.body)
+        .then(({responseJson}) => {
+            if (responseJson.success) {
+                res.json(responseJson);
+                res.sendStatus(200);
+            }
+            else res.sendStatus(401)
+        })
+})
+expressApp.put('/mtnlsyx_nh', (req, res) => {
+
+    store
+        .update_table_mtnlsyx_nh(
+            req.body
+        )
+        .then(({responseJson}) => {
+            if (responseJson.success) {
+                res.json(responseJson);
+                res.sendStatus(200);
+            }
+            //520 means database access failure.
+            else res.sendStatus(520)
+        })
+})
+
+expressApp.delete('/mtnlsyx_nh', (req, res) => {
+
+    store
+        .delete_from_table_mtnlsyx_nh(
+            req.body
+        )
+        .then(({delCount}) => {
+
+
+            res.json({delCount: delCount});
+        })
+})
 
 expressApp.get('/get_table_bmaxttl', (req, res) => {
     store
         .get_table_bmaxttl(req.query.user)
+        .then(({responseJson}) => {
+            if (responseJson.success) {
+                res.json(responseJson);
+                res.sendStatus(200);
+            }
+            else res.sendStatus(401)
+        })
+})
+expressApp.get('/get_table_bmaxttl_nh', (req, res) => {
+    store
+        .get_table_bmaxttl_nh(req.query.user)
         .then(({responseJson}) => {
             if (responseJson.success) {
                 res.json(responseJson);
@@ -489,6 +712,45 @@ expressApp.delete('/bmaxttl', (req, res) => {
 
     store
         .delete_from_table_bmaxttl(
+            req.body
+        )
+        .then(({delCount}) => {
+
+
+            res.json({delCount: delCount});
+        })
+})
+expressApp.post('/bmaxttl_nh', (req, res) => {
+    store
+        .insert_into_table_bmaxttl_nh(req.body)
+        .then(({responseJson}) => {
+            if (responseJson.success) {
+                res.json(responseJson);
+                res.sendStatus(200);
+            }
+            else res.sendStatus(401)
+        })
+})
+expressApp.put('/bmaxttl_nh', (req, res) => {
+
+    store
+        .update_table_bmaxttl_nh(
+            req.body
+        )
+        .then(({responseJson}) => {
+            if (responseJson.success) {
+                res.json(responseJson);
+                res.sendStatus(200);
+            }
+            //520 means database access failure.
+            else res.sendStatus(520)
+        })
+})
+
+expressApp.delete('/bmaxttl_nh', (req, res) => {
+
+    store
+        .delete_from_table_bmaxttl_nh(
             req.body
         )
         .then(({delCount}) => {
@@ -564,6 +826,19 @@ expressApp.get('/get_table_mtkbnl', (req, res) => {
             else res.sendStatus(401)
         })
 })
+expressApp.get('/get_table_mtkbnl_nh', (req, res) => {
+    store
+        .get_table_mtkbnl_nh(req.query.user)
+        .then(({responseJson}) => {
+            if (responseJson.success) {
+
+
+                res.json(responseJson);
+                res.sendStatus(200);
+            }
+            else res.sendStatus(401)
+        })
+})
 expressApp.post('/mtkbnl', (req, res) => {
 
     store
@@ -604,6 +879,48 @@ expressApp.delete('/mtkbnl', (req, res) => {
             res.json({delCount: delCount});
         })
 })
+
+expressApp.post('/mtkbnl_nh', (req, res) => {
+
+    store
+        .insert_into_table_mtkbnl_nh(req.body)
+        .then(({responseJson}) => {
+            if (responseJson.success) {
+                res.json(responseJson);
+                res.sendStatus(200);
+            }
+            else res.sendStatus(401)
+        })
+})
+expressApp.put('/mtkbnl_nh', (req, res) => {
+
+    store
+        .update_table_mtkbnl_nh(
+            req.body
+        )
+        .then(({responseJson}) => {
+            if (responseJson.success) {
+                res.json(responseJson);
+                res.sendStatus(200);
+            }
+            //520 means database access failure.
+            else res.sendStatus(520)
+        })
+})
+
+expressApp.delete('/mtkbnl_nh', (req, res) => {
+
+    store
+        .delete_from_table_mtkbnl_nh(
+            req.body
+        )
+        .then(({delCount}) => {
+
+
+            res.json({delCount: delCount});
+        })
+})
+
 expressApp.get('/get_table_jzxttl', (req, res) => {
 
     store

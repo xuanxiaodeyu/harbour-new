@@ -61,7 +61,7 @@ class Dashboard extends React.Component {
   render() {
     const { classes, ...rest } = this.props;
     const mainPanel =
-      classes.mainPanel ;/*+
+      classes.mainPanel;/* +
       " " +
       cx({
         [classes.mainPanelSidebarMini]: this.state.miniActive,

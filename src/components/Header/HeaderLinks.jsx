@@ -31,42 +31,42 @@ import { history } from '_helpers/history.js';
 import {cookies} from '../../variables/general';
 
 class HeaderLinks extends React.Component {
-  state = {
-    open: false
-  };
-  handleClick = () => {
-    this.setState({ open: !this.state.open });
-  };
-  handleClose = () => {
-    this.setState({ open: false });
-  };
+  // state = {
+  //   open: false
+  // };
+  // handleClick = () => {
+  //   this.setState({ open: !this.state.open });
+  // };
+  // handleClose = () => {
+  //   this.setState({ open: false });
+  // };
   handleLogout = () => {
     userActions.logout();
     history.push('/login');
   };
   render() {
     const { classes, rtlActive } = this.props;
-    const { open } = this.state;
-    const searchButton =
-      classes.top +
-      " " +
-      classes.searchButton +
-      " " +
-      classNames({
-        [classes.searchRTL]: rtlActive
-      });
-    const dropdownItem =
-      classes.dropdownItem +
-      " " +
-      classNames({
-        [classes.dropdownItemRTL]: rtlActive
-      });
+    // const { open } = this.state;
+    // const searchButton =
+    //   classes.top +
+    //   " " +
+    //   classes.searchButton +
+    //   " " +
+    //   classNames({
+    //     [classes.searchRTL]: rtlActive
+    //   });
+    // const dropdownItem =
+    //   classes.dropdownItem +
+    //   " " +
+    //   classNames({
+    //     [classes.dropdownItemRTL]: rtlActive
+    //   });
     const wrapper = classNames({
       [classes.wrapperRTL]: rtlActive
     });
-    const managerClasses = classNames({
-      [classes.managerClasses]: true
-    });
+    // const managerClasses = classNames({
+    //   [classes.managerClasses]: true
+    // });
     return (
       <div className={wrapper}>
         {/*<CustomInput*/}

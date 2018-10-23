@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const store = require('./store');
 const browserSync = require('browser-sync');
 const expressApp = express();
+const dbstore = require('./dbstore');//ais
 
 debug.enable('app:*');
 
@@ -2122,7 +2123,7 @@ expressApp.get('*', (req, res) => {
     res.redirect('/');
 })
 
-var port = 5000;
+var port = 4000;
 var hostname = 'localhost';
 
 expressApp.listen(port, hostname, (err) => {
@@ -2568,3 +2569,176 @@ var bsWeInRe = 4444;
 //     weinre: { port: bsWeInRe },
 //   },
 // });
+
+
+
+//ais
+function ChangeDateFormat(cellval) {
+    var date = new Date(parseInt(cellval.replace("/Date(", "").replace(")/", ""), 10));
+    var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
+    var currentDate = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+    return date.getFullYear() + "-" + month + "-" + currentDate;
+}
+
+expressApp.post('/getdata', (req, res) => {
+        dbstore.getRoutes();
+    }
+);
+
+expressApp.post('/findport', (req, res) => {
+
+        var mes = dbstore.getByConditions(req.body.ID);
+    }
+);
+
+expressApp.post('/test', (req, res) => {
+    axios({
+        url: 'https://aiswebservices.ihs.com/AISSvc.svc/AIS/GetTargets',
+        method: 'post',
+        auth: {
+            username: 'chinwu817',
+            password: '742522'
+        },
+        data: {
+            sinceSeconds: '15'
+            //MMSI:'265878000'
+        }
+    })
+        .then(response => {
+
+            var contents = response.data.targetArr;
+            //console.log(response.data);
+            //console.log(contents.length);
+            for(var i =0; i<contents.length;i++) {
+                var content = JSON.stringify(contents[i]);
+                console.log(content);
+                content = JSON.parse(content);
+                //console.log("test"+ content.ETA);
+                content.ETA = ChangeDateFormat(content.ETA);
+                content.MessageTimestamp = ChangeDateFormat(content.MessageTimestamp);
+                content.ReceivedDate = ChangeDateFormat(content.ReceivedDate);
+                dbstore.dbinsert(content);
+            }
+            console.log("Store Over With "+contents.length);
+            if (!response.ok) {
+                return Promise.reject(response.statusText);
+            }
+            return response.json();
+        })
+});
+
+expressApp.post('/dbinsert', (req, res) => {
+    var Ship ={
+        "AISVersion": 0,
+        "AgeMinutes": 1.9281706183333334,
+        "BandFlag": 0,
+        "Callsign": "SIAU",
+        "DTE": 0,
+        "Destination": "STOCKHOLM",
+        "Draught": 5.1,
+        "ETA": "/Date(1544709600000)/",
+        "ExtraInfo": "N/A",
+        "Heading": 0,
+        "IMO": 5044893,
+        "Lat": 59.3185917,
+        "Length": 92,
+        "LengthBow": 32,
+        "LengthStern": 60,
+        "Lon": 18.08271,
+        "MMSI": 265878000,
+        "MessageTimestamp": "/Date(1537876043000)/",
+        "Name": "BIRGER JARL",
+        "PositionAccuracy": 1,
+        "PositionFixType": 1,
+        "RAIMFlag": 0,
+        "RadioStatus": 59916,
+        "ReceivedDate": "/Date(1537876043000)/",
+        "Regional": 3,
+        "Regional2": 0,
+        "RepeatIndicator": 0,
+        "RoT": 0,
+        "SoG": 0,
+        "Spare": 0,
+        "Spare2": 0,
+        "Status": "Moored",
+        "TimestampUTC": 22,
+        "VesselType": "Passenger",
+        "Width": 14,
+        "WidthPort": 7,
+        "WidthStarboard": 7
+    };
+    var content = JSON.stringify(Ship);
+    content = JSON.parse(content);
+    dbstore
+        .dbinsert(content)
+        .then(({ responseJson }) => {
+            if (responseJson.success) {
+                console.log("得到服务器数据");
+                res.json(responseJson);
+                res.sendStatus(200);
+            }
+            else {
+                res.sendStatus(401);
+            }
+        })
+});
+
+expressApp.post('/dbupdate', (req, res) => {
+    dbstore
+        .dbupdate(
+        )
+        .then(({ responseJson }) => {
+            if (responseJson.success) {
+                //console.log(responseJson);
+                res.json(responseJson);
+                res.sendStatus(200);
+            }
+            else {
+                res.sendStatus(401);
+            }
+        })
+});
+
+expressApp.post('/getByConditions', (req, res) => {
+    dbstore
+        .getByConditions(
+        )
+        .then(({ responseJson }) => {
+            if (responseJson.success) {
+                //console.log(responseJson);
+                res.json(responseJson);
+                res.sendStatus(200);
+            }
+            else {
+                res.sendStatus(401);
+            }
+        })
+});
+
+expressApp.post('/analyseRoutes',(req,res) => {
+    /*dbstore
+        .analyseRoutes()
+        .then(dbstore.countRoutes())*/
+    dbstore.countRoutes();
+    //dbstore.freshRoutes();
+});
+
+
+expressApp.post('/getPorts',(req,res) => {
+    dbstore.getPorts()
+        .then((responseJson) => {
+            //console.log(responseJson);
+            res.json(responseJson);
+            res.sendStatus(200);
+        });
+});
+
+expressApp.post('/getRoutes',(req,res) => {
+    dbstore
+        .getRoutes()
+        .then(( responseJson ) => {
+            //console.log(responseJson);
+            res.json(responseJson);
+            res.sendStatus(200);
+        })
+});

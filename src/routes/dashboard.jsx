@@ -62,73 +62,73 @@ import DateRange from "material-ui-icons/DateRange";
 var dashRoutesNormal = [
   {
     collapse: true,
-    path: "/yh",
+    path: "/harbourscore/yh",
     name: "沿海港口绩效",
     state: "openComponents",
     icon: Place,
     views: [
       {
-          path: "/yh/gkjxzdf",
+          path: "/harbourscore/yh/gkjxzdf",
           name: "绩效总体评价",
           mini: "",
           component: gkjxzdf
       },
       {
-        path: "/yh/gkhwttl",
+        path: "/harbourscore/yh/gkhwttl",
         name: "港口货物吞吐量",
         mini: "",
         component: gkhwttl
       },
       {
-        path: "/yh/gkjzxttl",
+        path: "/harbourscore/yh/gkjzxttl",
         name: "港口集装箱吞吐量",
         mini: "",
         component: jzxttl
       },
         {
-            path: "/yh/yhgkmtkbnl_max_bw",
+            path: "/harbourscore/yh/yhgkmtkbnl_max_bw",
             name: "码头靠泊能力",
             mini: "",
             component: yhgkmtkbnl_max_bw
         },
         {
-            path: "/yh/dckbsl",
+            path: "/harbourscore/yh/dckbsl",
             name: "港口连通性",
             mini: "",
             component: dckbsl
         },
         {
-            path: "/yh/bmaxttl",
+            path: "/harbourscore/yh/bmaxttl",
             name: "港口岸线利用率",
             mini: "",
             component: bmaxttl
         },
         {
-            path: "/yh/mtnlsyd",
+            path: "/harbourscore/yh/mtnlsyd",
             name: "港口通过能力适应度",
             mini: "",
             component: mtnlsyd
         },
         {
-            path: "/yh/cbzgpjts",
+            path: "/harbourscore/yh/cbzgpjts",
             name: "港口作业效率",
             mini: "",
             component: cbzgpjts
         },
         {
-            path: "/yh/ddsr",
+            path: "/harbourscore/yh/ddsr",
             name: "港口经济贡献",
             mini: "",
             component: ddsr
         },
         {
-            path: "/yh/lsgkdj",
+            path: "/harbourscore/yh/lsgkdj",
             name: "绿色港口等级",
             mini: "",
             component: lsgkdj
         },
         {
-            path: "/yh/qwdttlswrs",
+            path: "/harbourscore/yh/qwdttlswrs",
             name: "港口安全生产水平",
             mini: "",
             component: qwdttlswrs
@@ -137,61 +137,61 @@ var dashRoutesNormal = [
   },
   {
       collapse: true,
-      path: "/nh",
+      path: "/harbourscore/nh",
       name: "内河港口绩效",
       state: "openTables",
       icon: Timeline,
       views: [
           {
-              path: "/nh/gkjxzdf",
+              path: "/harbourscore/nh/gkjxzdf",
               name: "绩效总体评价",
               mini: "",
               component: gkjxzdf_nh
           },
           {
-              path: "/nh/gkhwttl",
+              path: "/harbourscore/nh/gkhwttl",
               name: "港口货物吞吐量",
               mini: "",
               component: gkhwttl_nh
           },
           {
-              path: "/nh/gkjzxttl",
+              path: "/harbourscore/nh/gkjzxttl",
               name: "港口集装箱吞吐量",
               mini: "",
               component: jzxttl_nh
           },
           {
-              path: "/nh/yhgkmtkbnl_max_bw",
+              path: "/harbourscore/nh/yhgkmtkbnl_max_bw",
               name: "码头靠泊能力",
               mini: "",
               component: yhgkmtkbnl_max_bw_nh
           },
           {
-              path: "/nh/bmaxttl",
+              path: "/harbourscore/nh/bmaxttl",
               name: "港口岸线利用率",
               mini: "",
               component: bmaxttl_nh
           },
           {
-              path: "/nh/mtnlsyd",
+              path: "/harbourscore/nh/mtnlsyd",
               name: "港口通过能力适应度",
               mini: "",
               component: mtnlsyd_nh
           },
           {
-              path: "/nh/ddsr",
+              path: "/harbourscore/nh/ddsr",
               name: "港口经济贡献",
               mini: "",
               component: ddsr_nh
           },
           {
-              path: "/nh/lsgkdj",
+              path: "/harbourscore/nh/lsgkdj",
               name: "绿色港口等级",
               mini: "",
               component: lsgkdj_nh
           },
           {
-              path: "/nh/qwdttlswrs",
+              path: "/harbourscore/nh/qwdttlswrs",
               name: "港口安全生产水平",
               mini: "",
               component: qwdttlswrs_nh
@@ -200,98 +200,98 @@ var dashRoutesNormal = [
   },
     {
         collapse: true,
-        path: "/datamanage",
+        path: "/harbourscore/datamanage",
         name: "数据管理",
         state: "openMaps",
         icon: GridOn,
         views: [
             {
-                path: "/datamanage/yanhai",
+                path: "/harbourscore/datamanage/yanhai",
                 name: "沿海数据管理",
                 mini: "",
                 component: DataManage
             },
             {
-                path: "/datamanage/neihe",
+                path: "/harbourscore/datamanage/neihe",
                 name: "内河数据管理",
                 mini: "",
                 component: DataManage_nh
             }
         ]
     },
-  { redirect: true, path: "/", pathTo: "/yh/gkjxzdf", name: "港口绩效总得分" }
+  { redirect: true, path: "/", pathTo: "/harbourscore/yh/gkjxzdf", name: "港口绩效总得分" }
 ];
 
 var dashRoutesGuest = [
     {
         collapse: true,
-        path: "/yh",
+        path: "/harbourscore/yh",
         name: "沿海港口绩效",
         state: "openComponents",
         icon: Place,
         views: [
             {
-                path: "/yh/gkjxzdf",
+                path: "/harbourscore/yh/gkjxzdf",
                 name: "绩效总体评价",
                 mini: "",
                 component: gkjxzdf
             },
             {
-                path: "/yh/gkhwttl",
+                path: "/harbourscore/yh/gkhwttl",
                 name: "港口货物吞吐量",
                 mini: "",
                 component: gkhwttl
             },
             {
-                path: "/yh/gkjzxttl",
+                path: "/harbourscore/yh/gkjzxttl",
                 name: "港口集装箱吞吐量",
                 mini: "",
                 component: jzxttl
             },
             {
-                path: "/yh/yhgkmtkbnl_max_bw",
+                path: "/harbourscore/yh/yhgkmtkbnl_max_bw",
                 name: "码头靠泊能力",
                 mini: "",
                 component: yhgkmtkbnl_max_bw
             },
             {
-                path: "/yh/dckbsl",
+                path: "/harbourscore/yh/dckbsl",
                 name: "港口连通性",
                 mini: "",
                 component: dckbsl
             },
             {
-                path: "/yh/bmaxttl",
+                path: "/harbourscore/yh/bmaxttl",
                 name: "港口岸线利用率",
                 mini: "",
                 component: bmaxttl
             },
             {
-                path: "/yh/mtnlsyd",
+                path: "/harbourscore/yh/mtnlsyd",
                 name: "港口通过能力适应度",
                 mini: "",
                 component: mtnlsyd
             },
             {
-                path: "/yh/cbzgpjts",
+                path: "/harbourscore/yh/cbzgpjts",
                 name: "港口作业效率",
                 mini: "",
                 component: cbzgpjts
             },
             {
-                path: "/yh/ddsr",
+                path: "/harbourscore/yh/ddsr",
                 name: "港口经济贡献",
                 mini: "",
                 component: ddsr
             },
             {
-                path: "/yh/lsgkdj",
+                path: "/harbourscore/yh/lsgkdj",
                 name: "绿色港口等级",
                 mini: "",
                 component: lsgkdj
             },
             {
-                path: "/yh/qwdttlswrs",
+                path: "/harbourscore/yh/qwdttlswrs",
                 name: "港口安全生产水平",
                 mini: "",
                 component: qwdttlswrs
@@ -300,95 +300,68 @@ var dashRoutesGuest = [
     },
     {
         collapse: true,
-        path: "/nh",
+        path: "/harbourscore/nh",
         name: "内河港口绩效",
         state: "openTables",
         icon: Timeline,
         views: [
             {
-                path: "/nh/gkjxzdf",
+                path: "/harbourscore/nh/gkjxzdf",
                 name: "绩效总体评价",
                 mini: "",
                 component: gkjxzdf_nh
             },
             {
-                path: "/nh/gkhwttl",
+                path: "/harbourscore/nh/gkhwttl",
                 name: "港口货物吞吐量",
                 mini: "",
                 component: gkhwttl_nh
             },
             {
-                path: "/nh/gkjzxttl",
+                path: "/harbourscore/nh/gkjzxttl",
                 name: "港口集装箱吞吐量",
                 mini: "",
                 component: jzxttl_nh
             },
             {
-                path: "/nh/yhgkmtkbnl_max_bw",
+                path: "/harbourscore/nh/yhgkmtkbnl_max_bw",
                 name: "码头靠泊能力",
                 mini: "",
                 component: yhgkmtkbnl_max_bw_nh
             },
             {
-                path: "/nh/bmaxttl",
+                path: "/harbourscore/nh/bmaxttl",
                 name: "港口岸线利用率",
                 mini: "",
                 component: bmaxttl_nh
             },
             {
-                path: "/nh/mtnlsyd",
+                path: "/harbourscore/nh/mtnlsyd",
                 name: "港口通过能力适应度",
                 mini: "",
                 component: mtnlsyd_nh
             },
             {
-                path: "/nh/ddsr",
+                path: "/harbourscore/nh/ddsr",
                 name: "港口经济贡献",
                 mini: "",
                 component: ddsr_nh
             },
             {
-                path: "/nh/lsgkdj",
+                path: "/harbourscore/nh/lsgkdj",
                 name: "绿色港口等级",
                 mini: "",
                 component: lsgkdj_nh
             },
             {
-                path: "/nh/qwdttlswrs",
+                path: "/harbourscore/nh/qwdttlswrs",
                 name: "港口安全生产水平",
                 mini: "",
                 component: qwdttlswrs_nh
             }
         ]
     },
-    {
-        collapse: true,
-        path: "/maps",
-        name: "Maps",
-        state: "openMaps",
-        icon: Place,
-        views: [
-            {
-                path: "/maps/google-maps",
-                name: "Google Maps",
-                mini: "GM",
-                component: GoogleMaps
-            },
-            {
-                path: "/maps/full-screen-maps",
-                name: "Full Screen Map",
-                mini: "FSM",
-                component: FullScreenMap
-            },
-            {
-                path: "/maps/vector-maps",
-                name: "Vector Map",
-                mini: "VM",
-                component: VectorMap
-            }
-        ]
-    },
-    { redirect: true, path: "/", pathTo: "/yh/gkjxzdf", name: "港口绩效总得分" }
+    { redirect: true, path: "/", pathTo: "/harbourscore/yh/gkjxzdf", name: "港口绩效总得分" }
 ];
 
 export {dashRoutesGuest, dashRoutesNormal};

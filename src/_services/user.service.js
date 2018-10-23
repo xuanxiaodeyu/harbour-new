@@ -102,6 +102,8 @@ export const userService = {
     get_bmaxttl_zbwcd,
     updateRadar,
     get_editor_gk,
+    //Ais
+    filter_RS,getRouteData,DbInsert,Dbfindport,getData,getRoutes,analyseRoutes,getPorts,RefreshRoutes
 };
 
 function get_editor_gk(username){
@@ -2763,6 +2765,215 @@ function get_qwdttlswrs_nh_jxsp(gk) {
             }
             else
             {
+                //FIXME: deal with fail situation
+            }
+        });
+}
+
+
+
+//Ais
+function RefreshRoutes() {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+    };
+    return fetch('/RefreshRoutes', requestOptions)
+        .then(response => {
+            //console.log("res"+response);
+            //console.log(`lsgkdj_year response from expressApp is: ${response.ok}`);
+            if (!response.ok) {
+                return Promise.reject(response.statusText);
+            }
+            return response.json();
+        })
+        .then(Result => {
+            //console.log("result"+Result);
+            return Result;
+        });
+}
+
+function getPorts() {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+    };
+    return fetch('/getPorts', requestOptions)
+        .then(response => {
+            //console.log("res"+response);
+            //console.log(`lsgkdj_year response from expressApp is: ${response.ok}`);
+            if (!response.ok) {
+                return Promise.reject(response.statusText);
+            }
+            return response.json();
+        })
+        .then(Result => {
+            //console.log("result"+Result);
+            return Result;
+        });
+}
+
+function analyseRoutes() {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+    };
+    return fetch('/analyseRoutes', requestOptions)
+        .then(response => {
+            //console.log("res"+response);
+            //console.log(`lsgkdj_year response from expressApp is: ${response.ok}`);
+            if (!response.ok) {
+                return Promise.reject(response.statusText);
+            }
+            return response.json();
+        })
+        .then(Result => {
+            //console.log("result"+Result);
+            return Result;
+        });
+}
+
+function getRoutes() {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+    };
+    return fetch('/getRoutes', requestOptions)
+        .then(response => {
+            //console.log("res"+response);
+            //console.log(`lsgkdj_year response from expressApp is: ${response.ok}`);
+            if (!response.ok) {
+                return Promise.reject(response.statusText);
+            }
+            return response.json();
+        })
+        .then(Result => {
+            //console.log("result"+Result);
+            return Result;
+        });
+}
+function getData() {
+
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+    };
+    return fetch('/getdata', requestOptions)
+        .then(response => {
+            //console.log(`lsgkdj_year response from expressApp is: ${response.ok}`);
+            if (!response.ok) {
+                return Promise.reject(response.statusText);
+            }
+            return response.json();
+        })
+        .then(Result => {
+            //console.log(Result.ShipName);
+            if (Result.success) {
+                return Result.features;
+            }
+            else {
+                //FIXME: deal with fail situation
+            }
+        });
+
+}
+function Dbfindport(ID) {
+
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:JSON.stringify({ ID })
+    };
+    return fetch('/findport', requestOptions)
+        .then(response => {
+            //console.log(`lsgkdj_year response from expressApp is: ${response.ok}`);
+            if (!response.ok) {
+                return Promise.reject(response.statusText);
+            }
+            return response.json();
+        })
+        .then(Result => {
+            //console.log(Result.ShipName);
+            if (Result.success) {
+                return Result.features;
+            }
+            else {
+                //FIXME: deal with fail situation
+            }
+        });
+
+}
+
+function DbInsert() {
+
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' }
+    };
+    return fetch('/test', requestOptions)
+        .then(response => {
+            //console.log(`lsgkdj_year response from expressApp is: ${response.ok}`);
+            if (!response.ok) {
+                return Promise.reject(response.statusText);
+            }
+            return response.json();
+        })
+        .then(Result => {
+            //console.log(Result.ShipName);
+            if (Result.success) {
+                return Result.features;
+            }
+            else {
+                //FIXME: deal with fail situation
+            }
+        });
+
+}
+
+function filter_RS(start_data,end_data) {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:JSON.stringify({ start_data,end_data })
+    };
+    return fetch('/filter_Route_Ship', requestOptions)
+        .then(response => {
+            //console.log(`lsgkdj_year response from expressApp is: ${response.ok}`);
+            if (!response.ok) {
+                return Promise.reject(response.statusText);
+            }
+            return response.json();
+        })
+        .then(Result => {
+            //console.log(Result.ShipName);
+            if (Result.success) {
+                return Result.features;
+            }
+            else {
+                //FIXME: deal with fail situation
+            }
+        });
+}
+
+function getRouteData() {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' }
+    };
+    return fetch('/getRouteData', requestOptions)
+        .then(response => {
+            //console.log(`lsgkdj_year response from expressApp is: ${response.ok}`);
+            if (!response.ok) {
+                return Promise.reject(response.statusText);
+            }
+            return response.json();
+        })
+        .then(Result => {
+            //console.log(Result.ShipName);
+            if (Result.success) {
+                return Result.features;
+            }
+            else {
                 //FIXME: deal with fail situation
             }
         });

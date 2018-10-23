@@ -1,6 +1,7 @@
 const crypto = require('crypto');
 const knex = require('knex')(require('./knexfile'));
 
+
 //import {currentUsername} from "./variables/username";
 // const mysql = require('mysql2/promise');
 // const bluebird = require('bluebird');
@@ -16,7 +17,9 @@ const knex = require('knex')(require('./knexfile'));
 
 module.exports = {
 
-    async createUser({username, password, gk}) {
+
+//harbourscore backend
+async createUser({username, password, gk}) {
         const {salt, hash} = saltHashPassword({password});
         const user = await knex('user').where({username});
 

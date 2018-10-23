@@ -119,7 +119,7 @@ const styles = theme => ({
         position: 'absolute',
         left: "90%",
         top: "10%",
-        width: 50,
+        width: 150,
     }
 });
 
@@ -128,7 +128,7 @@ const images = [
         url: '/static/images/harbourmap.png',
         title: '港口地图',
         width: '50%',
-        path: '#'
+        path: '/harbourmap'
     },
     {
         url: '/static/images/harbourinfo.jpg',
@@ -146,13 +146,13 @@ const images = [
         url: '/static/images/harbourscore.jpg',
         title: '港口绩效',
         width: '50%',
-        path: '/'
+        path: '/harbourscore'
     },
 
 
 ];
 
-function ButtonBases(props) {
+function FirstPage(props) {
     const {classes} = props;
 
     // handleLogout = () => {
@@ -165,7 +165,7 @@ function ButtonBases(props) {
         <div className={classes.root}>
             <span className={classes.title}><img src="/static/images/logo.png" className={classes.titleImg}></img>智慧港口整体解决方案</span>
             <span className={classes.subtitle}>地图、资讯、舆情、绩效四合一管理系统</span>
-            <Button color="primary" className={classes.button} onClick={ () => { userActions.logout(); history.push('/login');}}>{cookies.get('username')} 注销</Button>
+            <Button color="primary" className={classes.button} onClick={ () => { userActions.logout(); history.push('/login');}}>{cookies.get('username')}注销</Button>
             {images.map(image => (
                 <ButtonBase
                     focusRipple
@@ -201,8 +201,8 @@ function ButtonBases(props) {
     );
 }
 
-ButtonBases.propTypes = {
+FirstPage.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(ButtonBases);
+export default withStyles(styles)(FirstPage);
